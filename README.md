@@ -4,11 +4,14 @@
   <h1>OS B∞ST — Android TV RAM Cleaner &amp; Analyzer</h1>
 
   <p>
-    <a href="https://github.com/ysfzone/osboost/releases">
-      <img src="https://img.shields.io/github/v/release/ysfzone/osboost?style=for-the-badge&color=00E5FF&labelColor=131922" alt="Latest Release" />
+    <a href="https://github.com/ysfzone/osboost/releases/latest">
+      <img src="https://img.shields.io/badge/Version-v1.0.0-00E5FF?style=for-the-badge&labelColor=131922" alt="Version v1.0.0" />
     </a>
     <img src="https://img.shields.io/badge/Android-9%20to%2015-00E5FF?style=for-the-badge&labelColor=131922" alt="Android 9 to 15" />
     <img src="https://img.shields.io/badge/Package-com.osboost-00E5FF?style=for-the-badge&labelColor=131922" alt="Package com.osboost" />
+  </p>
+  <p>
+    <sub>By <strong>Ysfzone</strong> &bull; <a href="https://x.com/Ysfzone">X: @Ysfzone</a> &bull; <a href="https://github.com/ysfzone">GitHub: @Ysfzone</a></sub>
   </p>
 </div>
 
@@ -31,9 +34,9 @@ Ultra-lightweight (~245 KB), 100% native Kotlin RAM cleaner and memory analyzer 
 ---
 
 ## Download & Install
-Download the latest signed APK from [GitHub Releases](https://github.com/ysfzone/osboost/releases/latest) and sideload via ADB:
+Download the latest signed APK ([`OS-BOOST-v1.0.0.apk`](https://github.com/ysfzone/osboost/releases/latest)) from [GitHub Releases](https://github.com/ysfzone/osboost/releases/latest) and sideload via ADB:
 ```bash
-adb install -r app-release.apk
+adb install -r OS-BOOST-v1.0.0.apk
 ```
 
 ---

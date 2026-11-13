@@ -1,3 +1,5 @@
+> 🔗 **MANDATORY RULE CHAIN:** This visual system works strictly alongside [`PROJECT_CONTEXT.md`](PROJECT_CONTEXT.md) and [`RELEASE_AND_QUALITY_RULES.md`](RELEASE_AND_QUALITY_RULES.md). Every UI/web/README design must also include the mandatory `"By Ysfzone • X / GitHub: @Ysfzone"` attribution and dynamic version rules defined in `RELEASE_AND_QUALITY_RULES.md`.
+
 # BRAND_GUIDELINES.md — OS B∞ST Visual Identity System
 
 **Visual Source of Truth:** [`assets/brand_sheet.jpeg`](assets/brand_sheet.jpeg)  

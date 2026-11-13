@@ -47,6 +47,7 @@ class MainActivity : Activity() {
     private lateinit var pbRam: ProgressBar
     private lateinit var tvRamUsage: TextView
     private lateinit var btnUpdate: Button
+    private lateinit var tvFooterVersion: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +69,8 @@ class MainActivity : Activity() {
         pbRam = findViewById(R.id.pbRam)
         tvRamUsage = findViewById(R.id.tvRamUsage)
         btnUpdate = findViewById(R.id.btnUpdate)
+        tvFooterVersion = findViewById(R.id.tvFooterVersion)
+        tvFooterVersion.text = "v${BuildConfig.VERSION_NAME}"
     }
 
     private fun startSequence() {

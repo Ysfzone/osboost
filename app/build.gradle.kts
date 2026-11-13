@@ -54,6 +54,16 @@ android {
         buildConfig = true
     }
 
+    applicationVariants.all {
+        val variant = this
+        if (variant.buildType.name == "release") {
+            variant.outputs.all {
+                val outputImpl = this as? com.android.build.gradle.internal.api.BaseVariantOutputImpl
+                outputImpl?.outputFileName = "OS-BOOST-v${variant.versionName}.apk"
+            }
+        }
+    }
+
     packaging {
         resources {
             excludes += setOf(

@@ -42,5 +42,5 @@ jobs:
       - name: Upload Release APK
         uses: softprops/action-gh-release@v2
         with:
-          files: app/build/outputs/apk/release/*.apk
+          files: app/build/outputs/apk/release/OS-BOOST-v*.apk
 

@@ -1,3 +1,5 @@
+> 🔗 **MANDATORY RULE CHAIN:** Before starting ANY task, UI edit, or release, you MUST read [`BRAND_GUIDELINES.md`](BRAND_GUIDELINES.md) (plus [`assets/brand_sheet.jpeg`](assets/brand_sheet.jpeg)) AND [`RELEASE_AND_QUALITY_RULES.md`](RELEASE_AND_QUALITY_RULES.md). Do not execute anything without obeying all three files together.
+
 > **CRITICAL IMMUTABLE BRAND RULE:** Before creating or modifying ANY UI screen, popup, Android TV banner, launcher icon, GitHub README, web landing page, or promotional asset for `OS BOOST` (`com.osboost`), you MUST inspect `BRAND_GUIDELINES.md` and `assets/brand_sheet.jpeg`. You are strictly forbidden from altering the Infinity Rocket vector geometry, the `OS B∞ST` wordmark fusion, or introducing ANY hex color outside the 7 approved colors in `res/values/colors.xml`.
 
 # PROJECT_CONTEXT.md — OS BOOST (Android TV RAM Cleaner & Analyzer)
@@ -28,6 +30,7 @@
 
 ## 2. File Map
 - `BRAND_GUIDELINES.md` — Authoritative 7-color palette, Infinity Rocket geometry, and 6-variant brand usage specification.
+- `RELEASE_AND_QUALITY_RULES.md` — Mandatory attribution, English changelog, APK naming, README badge sync, TV Emulator QA gate, and semver rules.
 - `assets/brand_sheet.jpeg` — Visual source of truth (6-panel Brand Identity Sheet).
 - `assets/logo.svg` — Master vector lockup (`OS B∞ST` + Infinity Rocket) for GitHub/web.
 - `settings.gradle.kts` — Gradle plugin repositories, dependency resolution, root project `OS-BOOST`, includes `:app`.
