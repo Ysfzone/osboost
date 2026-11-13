@@ -1,4 +1,4 @@
-package com.ysfzone.goclean.updater
+package com.osboost.updater
 
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
@@ -9,7 +9,7 @@ import android.net.Uri
 import android.os.Environment
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import com.ysfzone.goclean.BuildConfig
+import com.osboost.BuildConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -25,7 +25,7 @@ data class ReleaseInfo(
 object UpdateChecker {
 
     private const val GITHUB_LATEST_RELEASE_URL =
-        "https://api.github.com/repos/ysfzone/goclean/releases/latest"
+        "https://api.github.com/repos/ysfzone/osboost/releases/latest"
 
     suspend fun checkLatestRelease(): ReleaseInfo? = withContext(Dispatchers.IO) {
         runCatching {
@@ -67,14 +67,14 @@ object UpdateChecker {
 
     fun downloadAndInstall(context: Context, release: ReleaseInfo) {
         val appContext = context.applicationContext
-        val fileName = "goclean-${release.versionName}.apk"
+        val fileName = "osboost-${release.versionName}.apk"
         val destDir = appContext.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) ?: return
         val destFile = File(destDir, fileName)
         if (destFile.exists()) destFile.delete()
 
         val dm = appContext.getSystemService(Context.DOWNLOAD_SERVICE) as? DownloadManager ?: return
         val request = DownloadManager.Request(Uri.parse(release.downloadUrl))
-            .setTitle("GO CLEAN ${release.versionName}")
+            .setTitle("OS BOOST ${release.versionName}")
             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
             .setDestinationInExternalFilesDir(appContext, Environment.DIRECTORY_DOWNLOADS, fileName)
 

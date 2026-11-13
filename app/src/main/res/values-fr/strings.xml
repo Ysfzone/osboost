@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">GO CLEAN</string>
+    <string name="app_name">OS BOOST</string>
     <string name="status_scanning">ANALYSE</string>
     <string name="status_optimized">OPTIMISÉ</string>
     <string name="status_analyzed">ANALYSÉ</string>
@@ -11,6 +11,6 @@
     <string name="fmt_ram_usage">Utilisée : %1$s / Total : %2$s</string>
     <string name="fmt_update_available">Mise à jour : %s</string>
     <string name="update_downloading">Téléchargement…</string>
-    <string name="cd_rocket">Fusée GO CLEAN</string>
+    <string name="cd_rocket">Fusée OS BOOST</string>
 </resources>
 

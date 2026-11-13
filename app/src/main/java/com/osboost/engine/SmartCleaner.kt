@@ -1,4 +1,4 @@
-package com.ysfzone.goclean.engine
+package com.osboost.engine
 
 import android.app.ActivityManager
 import android.content.Context

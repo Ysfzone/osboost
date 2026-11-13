@@ -20,6 +20,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "goclean"
+rootProject.name = "OS-BOOST"
 include(":app")
 

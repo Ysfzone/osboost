@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.ysfzone.goclean"
+    namespace = "com.osboost"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.ysfzone.goclean"
+        applicationId = "com.osboost"
         minSdk = 28
         targetSdk = 35
         versionCode = 1

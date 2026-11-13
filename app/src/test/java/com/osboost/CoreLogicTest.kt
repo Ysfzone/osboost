@@ -1,8 +1,8 @@
-package com.ysfzone.goclean
+package com.osboost
 
-import com.ysfzone.goclean.engine.MemoryManager
-import com.ysfzone.goclean.engine.MemorySnapshot
-import com.ysfzone.goclean.updater.UpdateChecker
+import com.osboost.engine.MemoryManager
+import com.osboost.engine.MemorySnapshot
+import com.osboost.updater.UpdateChecker
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

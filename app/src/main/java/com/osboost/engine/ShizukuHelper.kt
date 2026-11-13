@@ -1,4 +1,4 @@
-package com.ysfzone.goclean.engine
+package com.osboost.engine
 
 import android.content.pm.PackageManager
 import rikka.shizuku.Shizuku

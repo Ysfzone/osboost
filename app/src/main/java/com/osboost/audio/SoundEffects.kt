@@ -1,4 +1,4 @@
-package com.ysfzone.goclean.audio
+package com.osboost.audio
 
 import android.content.Context
 import android.media.AudioAttributes

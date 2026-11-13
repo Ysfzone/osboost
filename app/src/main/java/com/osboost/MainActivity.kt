@@ -1,4 +1,4 @@
-package com.ysfzone.goclean
+package com.osboost
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -15,11 +15,11 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import com.ysfzone.goclean.audio.SoundEffects
-import com.ysfzone.goclean.engine.CleanResult
-import com.ysfzone.goclean.engine.SmartCleaner
-import com.ysfzone.goclean.updater.ReleaseInfo
-import com.ysfzone.goclean.updater.UpdateChecker
+import com.osboost.audio.SoundEffects
+import com.osboost.engine.CleanResult
+import com.osboost.engine.SmartCleaner
+import com.osboost.updater.ReleaseInfo
+import com.osboost.updater.UpdateChecker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

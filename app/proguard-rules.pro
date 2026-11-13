@@ -1,5 +1,5 @@
 # Keep MainActivity & FileProvider / ShizukuProvider entry points
--keep class com.ysfzone.goclean.MainActivity { *; }
+-keep class com.osboost.MainActivity { *; }
 -keep class rikka.shizuku.ShizukuProvider { *; }
 -keep class androidx.core.content.FileProvider { *; }
 

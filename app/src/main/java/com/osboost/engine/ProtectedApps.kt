@@ -1,4 +1,4 @@
-package com.ysfzone.goclean.engine
+package com.osboost.engine
 
 import android.app.ActivityManager
 import android.content.Context
@@ -29,7 +29,8 @@ object ProtectedApps {
         "com.android.connectivity.resources",
         "com.android.providers.media",
         "com.google.android.providers.media.module",
-        "moe.shizuku.privileged.api"
+        "moe.shizuku.privileged.api",
+        "com.osboost"
     )
 
     fun getProtectedPackages(context: Context): Set<String> {
