@@ -71,14 +71,56 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- Rocket Launch Stage -->
+        <!-- Explicit Active Engine Mode Pill -->
+        <LinearLayout
+            android:id="@+id/llModePill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_mode_pill"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="5dp">
+
+            <ImageView
+                android:id="@+id/ivModeDot"
+                android:layout_width="7dp"
+                android:layout_height="7dp"
+                android:contentDescription="@null"
+                android:src="@drawable/dot_glow_cyan" />
+
+            <TextView
+                android:id="@+id/tvModeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.06"
+                android:text="@string/status_scanning"
+                android:textColor="@color/brand_cyan_electric"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Rocket Launch Stage with Soft Cyan Radial Aura -->
         <FrameLayout
             android:id="@+id/rocketStage"
             android:layout_width="match_parent"
-            android:layout_height="112dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="108dp"
+            android:layout_marginTop="8dp"
             android:clipChildren="false"
             android:clipToPadding="false">
+
+            <View
+                android:id="@+id/viewRocketAura"
+                android:layout_width="112dp"
+                android:layout_height="112dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_rocket_aura" />
 
             <ImageView
                 android:id="@+id/ivFlame"

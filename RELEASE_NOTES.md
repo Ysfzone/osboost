@@ -1,13 +1,9 @@
 ### ✨ Added
-- Initial **OS B∞ST** (`com.osboost`) native Android TV & Google TV RAM cleaner and memory analyzer (`minSdk 28`, `targetSdk 35`).
-- 3-tier hybrid cleaning engine: `killBackgroundProcesses` (API 28–33), silent Shizuku/Root `am force-stop` (API 34+), and `System.gc()` diagnostic analysis fallback (API 34+).
-- Smart protection rules excluding active TV Home Launchers, system/network/Bluetooth/GMS services, enabled keyboards (IMEs), and active audio/media playback.
-- Dark Neon floating dialog UI (`#131922` / `#00E5FF` / `#1E50B5`) with Infinity Rocket launch animation, synthesized `AudioTrack` sound effects, and full D-Pad remote navigation.
-- Automatic localization for English, Arabic (full RTL), and French.
-- Silent GitHub Releases auto-updater (`ysfzone/osboost`) with `DownloadManager` + `FileProvider` APK installation.
+- Translucent glassmorphism popup card (`#E6131922` → `#D90D1117`) with a `1.2dp` translucent Electric Cyan border, inner top glass highlight, and soft radial aura behind the Infinity Rocket.
+- Explicit active engine mode pill (`MODE: DEEP BOOST • ROOT`, `MODE: DEEP BOOST • SHIZUKU`, `MODE: STANDARD BOOST`, `MODE: SMART ANALYSIS`) localized across English, Arabic, and French.
+- Universal 3-tier auto-escalation across API 28–35+ with a one-time Root (`su`) prompt policy (`SharedPreferences`) and safe kernel cache drop (`sync && echo 3 > /proc/sys/vm/drop_caches`) when Root is granted.
+- Live cleaned apps count telemetry (`+X MB • N Apps Cleaned`) and permanent `v1.1.0 • By Ysfzone • X / GitHub: @Ysfzone` footer.
 
 ### 🔄 Changed
-- Standardized release artifact naming to `OS-BOOST-v<versionName>.apk`.
-
-### 🐛 Fixed
-- Handled translucent floating window lifecycle and auto-dismiss cleanly across Android TV launchers.
+- Refined translucent overlay window dim (`0.35f`) so the Android TV Home Screen subtly shows through behind the popup.
+- Updated release artifact naming and unit tests for `v1.1.0` (`OS-BOOST-v1.1.0.apk`).

@@ -72,4 +72,4 @@
 - [x] `assets/brand_sheet.jpeg` & `assets/logo.svg` archived
 - [x] Exclusive 7-color palette enforced across `colors.xml`, drawables, layouts, and `MainActivity.kt`
 - [x] Infinity Rocket (`ic_osboost_rocket.xml`), Panel 5 `tv_banner.xml`, and Panel 6 adaptive launcher icons
-- [x] `README.md` aligned with `assets/logo.svg` and `#131922`/`#00E5FF` badges
+- [x] Release `v1.1.0`: Translucent glass UI, explicit engine mode pill, universal 3-tier escalation with one-time root prompt, and `By Ysfzone` footer

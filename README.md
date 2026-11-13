@@ -5,7 +5,7 @@
 
   <p>
     <a href="https://github.com/ysfzone/osboost/releases/latest">
-      <img src="https://img.shields.io/badge/Version-v1.0.0-00E5FF?style=for-the-badge&labelColor=131922" alt="Version v1.0.0" />
+      <img src="https://img.shields.io/badge/Version-v1.1.0-00E5FF?style=for-the-badge&labelColor=131922" alt="Version v1.1.0" />
     </a>
     <img src="https://img.shields.io/badge/Android-9%20to%2015-00E5FF?style=for-the-badge&labelColor=131922" alt="Android 9 to 15" />
     <img src="https://img.shields.io/badge/Package-com.osboost-00E5FF?style=for-the-badge&labelColor=131922" alt="Package com.osboost" />
@@ -27,16 +27,16 @@ Ultra-lightweight (~245 KB), 100% native Kotlin RAM cleaner and memory analyzer 
   - **Tier 2 (Android 14+ / API 34+ with Shizuku or Root):** Silently detects authorized Shizuku or `su` and runs `am force-stop` for true deep cleaning—never nags if absent.
   - **Tier 3 (Android 14+ Standard Fallback):** Runs `System.gc()` and accurate Before/After RAM diagnostics (`ANALYZED` badge).
 - **Smart Protection Rules:** Automatically excludes your active TV Home Launcher, `com.osboost`, SystemUI, Google Play Services, Android TV Remote, Bluetooth/Wi-Fi stack, active keyboards (IMEs), and any app currently playing audio/IPTV media.
-- **TV-First Branded UI:** `420dp` floating `#131922` card, Infinity Rocket launch animation, synthesized `AudioTrack` sound effects (zero audio asset bloat), and full D-Pad / TV Remote navigation.
+- **TV-First Translucent Glass UI & Mode Indicator:** `420dp` translucent glass card (`#131922` → `#0D1117`) with an explicit active engine mode pill (`DEEP BOOST • ROOT`, `DEEP BOOST • SHIZUKU`, `STANDARD BOOST`, `SMART ANALYSIS`), Infinity Rocket launch animation, synthesized `AudioTrack` sound effects, and full D-Pad navigation.
 - **Localized Automatically:** English, Arabic (full RTL), and French.
 - **Silent GitHub Auto-Updater:** Checks [`ysfzone/osboost` Releases](https://github.com/ysfzone/osboost/releases) asynchronously and surfaces a D-Pad-focused update button only when a newer APK is available.
 
 ---
 
 ## Download & Install
-Download the latest signed APK ([`OS-BOOST-v1.0.0.apk`](https://github.com/ysfzone/osboost/releases/latest)) from [GitHub Releases](https://github.com/ysfzone/osboost/releases/latest) and sideload via ADB:
+Download the latest signed APK ([`OS-BOOST-v1.1.0.apk`](https://github.com/ysfzone/osboost/releases/latest)) from [GitHub Releases](https://github.com/ysfzone/osboost/releases/latest) and sideload via ADB:
 ```bash
-adb install -r OS-BOOST-v1.0.0.apk
+adb install -r OS-BOOST-v1.1.0.apk
 ```
 
 ---

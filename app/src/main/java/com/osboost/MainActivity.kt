@@ -17,6 +17,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.osboost.audio.SoundEffects
 import com.osboost.engine.CleanResult
+import com.osboost.engine.EngineMode
 import com.osboost.engine.SmartCleaner
 import com.osboost.updater.ReleaseInfo
 import com.osboost.updater.UpdateChecker
@@ -38,6 +39,7 @@ class MainActivity : Activity() {
 
     private lateinit var popupCard: LinearLayout
     private lateinit var tvStatusBadge: TextView
+    private lateinit var tvModeLabel: TextView
     private lateinit var ivRocket: ImageView
     private lateinit var ivFlame: ImageView
     private lateinit var tvScanningLabel: TextView
@@ -60,6 +62,7 @@ class MainActivity : Activity() {
     private fun bindViews() {
         popupCard = findViewById(R.id.popupCard)
         tvStatusBadge = findViewById(R.id.tvStatusBadge)
+        tvModeLabel = findViewById(R.id.tvModeLabel)
         ivRocket = findViewById(R.id.ivRocket)
         ivFlame = findViewById(R.id.ivFlame)
         tvScanningLabel = findViewById(R.id.tvScanningLabel)
@@ -153,6 +156,15 @@ class MainActivity : Activity() {
         resultsShown = true
         SoundEffects.playCompleteChime(this)
 
+        // Active Engine Mode Pill
+        val modeResId = when (result.mode) {
+            EngineMode.DEEP_ROOT -> R.string.mode_deep_root
+            EngineMode.DEEP_SHIZUKU -> R.string.mode_deep_shizuku
+            EngineMode.STANDARD_BOOST -> R.string.mode_standard
+            EngineMode.SMART_ANALYSIS -> R.string.mode_smart_analysis
+        }
+        tvModeLabel.setText(modeResId)
+
         // Status badge
         if (result.isOptimized) {
             tvStatusBadge.setText(R.string.status_optimized)
@@ -170,12 +182,27 @@ class MainActivity : Activity() {
 
         tvHeroRam.text = result.stats.availableFormatted
 
-        if (result.stats.deltaAvailableMB > 0) {
-            tvDeltaBadge.text = getString(R.string.fmt_freed_mb, result.stats.deltaAvailableMB)
-            tvDeltaBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_cyan_electric))
-        } else {
-            tvDeltaBadge.setText(R.string.label_memory_healthy)
-            tvDeltaBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_silver_muted))
+        when {
+            result.stats.deltaAvailableMB > 0 && result.processesCleaned > 0 -> {
+                tvDeltaBadge.text = getString(
+                    R.string.fmt_freed_and_cleaned,
+                    result.stats.deltaAvailableMB,
+                    result.processesCleaned
+                )
+                tvDeltaBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_cyan_electric))
+            }
+            result.stats.deltaAvailableMB > 0 -> {
+                tvDeltaBadge.text = getString(R.string.fmt_freed_mb, result.stats.deltaAvailableMB)
+                tvDeltaBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_cyan_electric))
+            }
+            result.processesCleaned > 0 -> {
+                tvDeltaBadge.text = getString(R.string.fmt_healthy_and_cleaned, result.processesCleaned)
+                tvDeltaBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_cyan_electric))
+            }
+            else -> {
+                tvDeltaBadge.setText(R.string.label_memory_healthy)
+                tvDeltaBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_silver_muted))
+            }
         }
 
         // Update progress bar to actual used RAM percentage
