@@ -1,9 +1,5 @@
-### ✨ Added
-- Translucent glassmorphism popup card (`#E6131922` → `#D90D1117`) with a `1.2dp` translucent Electric Cyan border, inner top glass highlight, and soft radial aura behind the Infinity Rocket.
-- Explicit active engine mode pill (`MODE: DEEP BOOST • ROOT`, `MODE: DEEP BOOST • SHIZUKU`, `MODE: STANDARD BOOST`, `MODE: SMART ANALYSIS`) localized across English, Arabic, and French.
-- Universal 3-tier auto-escalation across API 28–35+ with a one-time Root (`su`) prompt policy (`SharedPreferences`) and safe kernel cache drop (`sync && echo 3 > /proc/sys/vm/drop_caches`) when Root is granted.
-- Live cleaned apps count telemetry (`+X MB • N Apps Cleaned`) and permanent `v1.1.0 • By Ysfzone • X / GitHub: @Ysfzone` footer.
-
 ### 🔄 Changed
-- Refined translucent overlay window dim (`0.35f`) so the Android TV Home Screen subtly shows through behind the popup.
-- Updated release artifact naming and unit tests for `v1.1.0` (`OS-BOOST-v1.1.0.apk`).
+- Removed outer perimeter borders from the Android TV banner (`tv_banner.xml`) and adaptive launcher icons (`ic_launcher`, `ic_launcher_round`) for clean full-bleed `#131922` rendering across TV launchers.
+- Boosted the scale of the Infinity Rocket emblem, vertical divider, and `OS B∞ST` wordmark inside `tv_banner.xml` (~14% larger) and refined adaptive icon foreground padding (`18%` inset within the 66dp/108dp safe zone).
+- Added crisp, anti-aliased multi-density raster PNG assets for `tv_banner` (`xhdpi`, `xxhdpi`) and `ic_launcher` / `ic_launcher_round` (`mdpi` through `xxxhdpi`) plus `assets/play_store_icon_512.png`.
+- Updated app version to `v1.1.1` (`OS-BOOST-v1.1.1.apk`).

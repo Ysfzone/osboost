@@ -73,3 +73,4 @@
 - [x] Exclusive 7-color palette enforced across `colors.xml`, drawables, layouts, and `MainActivity.kt`
 - [x] Infinity Rocket (`ic_osboost_rocket.xml`), Panel 5 `tv_banner.xml`, and Panel 6 adaptive launcher icons
 - [x] Release `v1.1.0`: Translucent glass UI, explicit engine mode pill, universal 3-tier escalation with one-time root prompt, and `By Ysfzone` footer
+- [x] Release `v1.1.1`: Borderless full-bleed TV banner & launcher icons, +14% emblem scale boost, and multi-density PNG asset buckets (`mdpi`–`xxxhdpi`, `xhdpi`/`xxhdpi` banners, `512×512` master icon)

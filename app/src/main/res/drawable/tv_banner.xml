@@ -6,24 +6,17 @@
     android:viewportWidth="320"
     android:viewportHeight="180">
 
-    <!-- Elevated Slate Background -->
+    <!-- Borderless Full-Bleed Elevated Slate Background -->
     <path
         android:fillColor="@color/brand_bg_slate"
         android:pathData="M0,0 L320,0 L320,180 L0,180 Z" />
 
-    <!-- 1.5dp Electric Cyan Perimeter Border (45% alpha) -->
-    <path
-        android:pathData="M1.5,1.5 L318.5,1.5 L318.5,178.5 L1.5,178.5 Z"
-        android:strokeAlpha="0.45"
-        android:strokeColor="@color/brand_cyan_electric"
-        android:strokeWidth="1.5" />
-
-    <!-- Left: Colored Infinity Rocket Emblem -->
+    <!-- Left: Colored Infinity Rocket Emblem (+14% Scale Boost) -->
     <group
-        android:scaleX="1.12"
-        android:scaleY="1.12"
-        android:translateX="24"
-        android:translateY="34">
+        android:scaleX="1.28"
+        android:scaleY="1.28"
+        android:translateX="14"
+        android:translateY="26">
         <path
             android:pathData="M50,10 C38,24 34,42 35,64 M50,10 C62,24 66,42 65,64"
             android:strokeLineCap="round"
@@ -64,54 +57,60 @@
 
     <!-- Center Divider Hairline (20% alpha) -->
     <path
-        android:pathData="M132,46 L132,134"
+        android:pathData="M134,38 L134,142"
         android:strokeAlpha="0.20"
         android:strokeColor="@color/brand_cyan_electric"
-        android:strokeWidth="1.5" />
+        android:strokeWidth="1.6" />
 
-    <!-- Right: OS (Electric Cyan) + B∞ST (Pure White with fused ∞) -->
-    <!-- O -->
-    <path
-        android:pathData="M153,78 L157,78 A5,5 0 0,1 162,83 L162,97 A5,5 0 0,1 157,102 L153,102 A5,5 0 0,1 148,97 L148,83 A5,5 0 0,1 153,78 Z"
-        android:strokeColor="@color/brand_cyan_electric"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round"
-        android:strokeWidth="3.8" />
-    <!-- S -->
-    <path
-        android:pathData="M180,82 A4,4 0 0,0 176,78 L172,78 A4,4 0 0,0 168,82 L168,85 A4,4 0 0,0 172,89 L176,89 A4,4 0 0,1 180,93 L180,98 A4,4 0 0,1 176,102 L172,102 A4,4 0 0,1 168,98"
-        android:strokeColor="@color/brand_cyan_electric"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round"
-        android:strokeWidth="3.8" />
+    <!-- Right: OS (Electric Cyan) + B∞ST (Pure White with fused ∞) (+14% Scale Boost) -->
+    <group
+        android:pivotX="148"
+        android:pivotY="90"
+        android:scaleX="1.14"
+        android:scaleY="1.14">
+        <!-- O -->
+        <path
+            android:pathData="M153,78 L157,78 A5,5 0 0,1 162,83 L162,97 A5,5 0 0,1 157,102 L153,102 A5,5 0 0,1 148,97 L148,83 A5,5 0 0,1 153,78 Z"
+            android:strokeColor="@color/brand_cyan_electric"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:strokeWidth="3.8" />
+        <!-- S -->
+        <path
+            android:pathData="M180,82 A4,4 0 0,0 176,78 L172,78 A4,4 0 0,0 168,82 L168,85 A4,4 0 0,0 172,89 L176,89 A4,4 0 0,1 180,93 L180,98 A4,4 0 0,1 176,102 L172,102 A4,4 0 0,1 168,98"
+            android:strokeColor="@color/brand_cyan_electric"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:strokeWidth="3.8" />
 
-    <!-- B -->
-    <path
-        android:pathData="M194,102 L194,78 L202,78 A4.5,4.5 0 0,1 206.5,82.5 L206.5,85 A4.5,4.5 0 0,1 202,89.5 L194,89.5 M202,89.5 A4.5,4.5 0 0,1 207.5,94 L207.5,97.5 A4.5,4.5 0 0,1 202,102 L194,102"
-        android:strokeColor="@color/brand_white_pure"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round"
-        android:strokeWidth="3.8" />
-    <!-- Fused Infinity Symbol (∞) -->
-    <path
-        android:pathData="M227,90 C223.5,82.5 213.5,82.5 213.5,90 C213.5,97.5 223.5,97.5 227,90 C230.5,82.5 240.5,82.5 240.5,90 C240.5,97.5 230.5,97.5 227,90 Z"
-        android:strokeColor="@color/brand_white_pure"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round"
-        android:strokeWidth="3.8" />
-    <!-- S -->
-    <path
-        android:pathData="M259,82 A4,4 0 0,0 255,78 L251,78 A4,4 0 0,0 247,82 L247,85 A4,4 0 0,0 251,89 L255,89 A4,4 0 0,1 259,93 L259,98 A4,4 0 0,1 255,102 L251,102 A4,4 0 0,1 247,98"
-        android:strokeColor="@color/brand_white_pure"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round"
-        android:strokeWidth="3.8" />
-    <!-- T -->
-    <path
-        android:pathData="M265,78 L280,78 M272.5,78 L272.5,102"
-        android:strokeColor="@color/brand_white_pure"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round"
-        android:strokeWidth="3.8" />
+        <!-- B -->
+        <path
+            android:pathData="M194,102 L194,78 L202,78 A4.5,4.5 0 0,1 206.5,82.5 L206.5,85 A4.5,4.5 0 0,1 202,89.5 L194,89.5 M202,89.5 A4.5,4.5 0 0,1 207.5,94 L207.5,97.5 A4.5,4.5 0 0,1 202,102 L194,102"
+            android:strokeColor="@color/brand_white_pure"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:strokeWidth="3.8" />
+        <!-- Fused Infinity Symbol (∞) -->
+        <path
+            android:pathData="M227,90 C223.5,82.5 213.5,82.5 213.5,90 C213.5,97.5 223.5,97.5 227,90 C230.5,82.5 240.5,82.5 240.5,90 C240.5,97.5 230.5,97.5 227,90 Z"
+            android:strokeColor="@color/brand_white_pure"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:strokeWidth="3.8" />
+        <!-- S -->
+        <path
+            android:pathData="M259,82 A4,4 0 0,0 255,78 L251,78 A4,4 0 0,0 247,82 L247,85 A4,4 0 0,0 251,89 L255,89 A4,4 0 0,1 259,93 L259,98 A4,4 0 0,1 255,102 L251,102 A4,4 0 0,1 247,98"
+            android:strokeColor="@color/brand_white_pure"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:strokeWidth="3.8" />
+        <!-- T -->
+        <path
+            android:pathData="M265,78 L280,78 M272.5,78 L272.5,102"
+            android:strokeColor="@color/brand_white_pure"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:strokeWidth="3.8" />
+    </group>
 
 </vector>

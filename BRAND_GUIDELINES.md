@@ -53,7 +53,11 @@ Zero other colors (no green, orange, red, or unapproved shades) are permitted an
 4. **Variant 4 — 3D Brushed Metallic Silver (`#8A94A6` on `#0D1117` / `#131922`):**
    - **When to use:** Hardware-style promotional renders, TV box packaging mockups, or metallic showcase headers.
 5. **Variant 5 — Horizontal TV Banner Lockup (`res/drawable/tv_banner.xml`, 320dp × 180dp):**
-   - **When to use:** Android TV / Google TV Leanback Home Screen channel banner. Uses `#131922` surface, `1.5dp` `#00E5FF` border (45% alpha), left Infinity Rocket gradient, 20% alpha `#00E5FF` vertical divider, and right `OS B∞ST` wordmark.
+   - **When to use:** Android TV / Google TV Leanback Home Screen channel banner.
+   - **Borderless Full-Bleed Rule:** Uses a **borderless** full-bleed `#131922` surface (NO outer perimeter stroke/border so it never collides with Android TV's rounded card corners), left Infinity Rocket gradient, 20% alpha `#00E5FF` vertical divider, and right `OS B∞ST` wordmark.
+   - **Multi-Density Raster Fallbacks:** `res/drawable-xhdpi/tv_banner.png` (`320×180 px`) and `res/drawable-xxhdpi/tv_banner.png` (`640×360 px`).
 6. **Variant 6 — Frosted Dark App Icon Tile (`ic_launcher.xml` & `ic_launcher_round.xml`):**
-   - **When to use:** Standard Android launcher icon and system settings app list. Uses `#131922` → `#0D1117` adaptive background with the centered colored Infinity Rocket Emblem padded within the 108dp adaptive safe zone.
+   - **When to use:** Standard Android launcher icon and system settings app list.
+   - **Borderless Full-Bleed Rule:** Uses a **borderless** `#131922` adaptive background (`@color/brand_bg_slate`) with the centered colored Infinity Rocket Emblem (`18%` inset, strictly inside the `66dp/108dp` adaptive safe zone).
+   - **Multi-Density Raster Fallbacks:** `mipmap-mdpi` (`48×48`), `mipmap-hdpi` (`72×72`), `mipmap-xhdpi` (`96×96`), `mipmap-xxhdpi` (`144×144`), `mipmap-xxxhdpi` (`192×192`), and [`assets/play_store_icon_512.png`](assets/play_store_icon_512.png) (`512×512`).
 
