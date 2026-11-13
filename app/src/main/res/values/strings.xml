@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GO CLEAN</string>
+    <string name="status_scanning">SCANNING</string>
+    <string name="status_optimized">OPTIMIZED</string>
+    <string name="status_analyzed">ANALYZED</string>
+    <string name="label_scanning_ram">Optimizing system memory…</string>
+    <string name="label_available_ram">Available RAM</string>
+    <string name="label_memory_healthy">Memory Healthy</string>
+    <string name="fmt_freed_mb">+%d MB Freed</string>
+    <string name="fmt_ram_usage">Used: %1$s / Total: %2$s</string>
+    <string name="fmt_update_available">Update Available: %s</string>
+    <string name="update_downloading">Downloading update…</string>
+    <string name="cd_rocket">GO CLEAN Rocket</string>
+</resources>
+

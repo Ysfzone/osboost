@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GO CLEAN</string>
+    <string name="status_scanning">جارٍ الفحص</string>
+    <string name="status_optimized">تم التحسين</string>
+    <string name="status_analyzed">تم التحليل</string>
+    <string name="label_scanning_ram">جارٍ تحسين ذاكرة النظام…</string>
+    <string name="label_available_ram">الذاكرة المتاحة</string>
+    <string name="label_memory_healthy">الذاكرة سليمة</string>
+    <string name="fmt_freed_mb">+%d م.ب محرّرة</string>
+    <string name="fmt_ram_usage">المستخدم: %1$s / الإجمالي: %2$s</string>
+    <string name="fmt_update_available">تحديث متوفر: %s</string>
+    <string name="update_downloading">جارٍ تنزيل التحديث…</string>
+    <string name="cd_rocket">صاروخ GO CLEAN</string>
+</resources>
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="32"
+    android:viewportHeight="32">
+
+    <!-- Outer Cyan Exhaust Glow -->
+    <path
+        android:fillColor="#8000E5FF"
+        android:pathData="M9,2 L23,2 C23,12 19,24 16,30 C13,24 9,12 9,2 Z" />
+
+    <!-- Inner Bright Core -->
+    <path
+        android:fillColor="#FFE0FFFF"
+        android:pathData="M12,2 L20,2 C20,9 17.8,18 16,22 C14.2,18 12,9 12,2 Z" />
+
+</vector>
+

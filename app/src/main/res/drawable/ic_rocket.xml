@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+
+    <!-- Left & Right Fins -->
+    <path
+        android:fillColor="#2979FF"
+        android:pathData="M21,36 L11,46 L14,50 L23,44 Z" />
+    <path
+        android:fillColor="#2979FF"
+        android:pathData="M43,36 L53,46 L50,50 L41,44 Z" />
+
+    <!-- Rocket Body -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M32,6 C24,14 21,26 22,42 L42,42 C43,26 40,14 32,6 Z" />
+
+    <!-- Neon Cyan Nose & Accent Stripe -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M32,6 C28.5,9.5 26.2,14 25,18 L39,18 C37.8,14 35.5,9.5 32,6 Z" />
+
+    <!-- Cockpit Window -->
+    <path
+        android:fillColor="#121622"
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="2"
+        android:pathData="M32,23 A5,5 0 1,0 32,33 A5,5 0 1,0 32,23 Z" />
+
+    <!-- Thruster Nozzle -->
+    <path
+        android:fillColor="#94A3B8"
+        android:pathData="M25,42 L23,47 L41,47 L39,42 Z" />
+
+</vector>
+
