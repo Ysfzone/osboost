@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Fuselage -->
+    <path
+        android:pathData="M50,10 C38,24 34,42 35,64 M50,10 C62,24 66,42 65,64"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="4.5">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:endX="50"
+                android:endY="90"
+                android:startX="50"
+                android:startY="10"
+                android:type="linear">
+                <item
+                    android:color="@color/brand_cyan_electric"
+                    android:offset="0.0" />
+                <item
+                    android:color="@color/brand_blue_cobalt"
+                    android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Nose Cone Divider -->
+    <path
+        android:pathData="M40,26 L60,26"
+        android:strokeLineCap="round"
+        android:strokeWidth="4.2">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:endX="50"
+                android:endY="90"
+                android:startX="50"
+                android:startY="10"
+                android:type="linear">
+                <item
+                    android:color="@color/brand_cyan_electric"
+                    android:offset="0.0" />
+                <item
+                    android:color="@color/brand_blue_cobalt"
+                    android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Porthole Ring -->
+    <path
+        android:pathData="M50,34.5 A5.5,5.5 0 1,0 50,45.5 A5.5,5.5 0 1,0 50,34.5 Z"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="4.2">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:endX="50"
+                android:endY="90"
+                android:startX="50"
+                android:startY="10"
+                android:type="linear">
+                <item
+                    android:color="@color/brand_cyan_electric"
+                    android:offset="0.0" />
+                <item
+                    android:color="@color/brand_blue_cobalt"
+                    android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Integrated Infinity Symbol -->
+    <path
+        android:pathData="M50,63 C46,56 36,56 36,63 C36,70 46,70 50,63 C54,56 64,56 64,63 C64,70 54,70 50,63 Z"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="4.5">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:endX="50"
+                android:endY="90"
+                android:startX="50"
+                android:startY="10"
+                android:type="linear">
+                <item
+                    android:color="@color/brand_cyan_electric"
+                    android:offset="0.0" />
+                <item
+                    android:color="@color/brand_blue_cobalt"
+                    android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Symmetrical Swept-Back Side Fins -->
+    <path
+        android:pathData="M35,51 C26,56 24,66 25,75 L35,67 M65,51 C74,56 76,66 75,75 L65,67"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="4.5">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:endX="50"
+                android:endY="90"
+                android:startX="50"
+                android:startY="10"
+                android:type="linear">
+                <item
+                    android:color="@color/brand_cyan_electric"
+                    android:offset="0.0" />
+                <item
+                    android:color="@color/brand_blue_cobalt"
+                    android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Exhaust Chevron -->
+    <path
+        android:pathData="M43,75 L50,89 L57,75"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="4.5">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:endX="50"
+                android:endY="90"
+                android:startX="50"
+                android:startY="10"
+                android:type="linear">
+                <item
+                    android:color="@color/brand_cyan_electric"
+                    android:offset="0.0" />
+                <item
+                    android:color="@color/brand_blue_cobalt"
+                    android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+</vector>
+

@@ -1,118 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
     android:width="320dp"
     android:height="180dp"
     android:viewportWidth="320"
     android:viewportHeight="180">
 
-    <!-- Dark Cyber Background -->
+    <!-- Elevated Slate Background -->
     <path
-        android:fillColor="#0E121D"
+        android:fillColor="@color/brand_bg_slate"
         android:pathData="M0,0 L320,0 L320,180 L0,180 Z" />
 
-    <!-- Subtle Ambient Neon Glow Top-Left -->
+    <!-- 1.5dp Electric Cyan Perimeter Border (45% alpha) -->
     <path
-        android:fillColor="#1A00E5FF"
-        android:pathData="M0,0 L160,0 L90,180 L0,180 Z" />
+        android:pathData="M1.5,1.5 L318.5,1.5 L318.5,178.5 L1.5,178.5 Z"
+        android:strokeAlpha="0.45"
+        android:strokeColor="@color/brand_cyan_electric"
+        android:strokeWidth="1.5" />
 
-    <!-- Top & Bottom Neon Accent Hairlines -->
-    <path
-        android:fillColor="#00E5FF"
-        android:pathData="M0,0 L320,0 L320,3 L0,3 Z" />
-    <path
-        android:fillColor="#2979FF"
-        android:pathData="M0,177 L320,177 L320,180 L0,180 Z" />
-
-    <!-- Rocket Icon (Left) -->
+    <!-- Left: Colored Infinity Rocket Emblem -->
     <group
-        android:translateX="36"
-        android:translateY="46"
-        android:scaleX="1.35"
-        android:scaleY="1.35">
+        android:scaleX="1.12"
+        android:scaleY="1.12"
+        android:translateX="24"
+        android:translateY="34">
         <path
-            android:fillColor="#2979FF"
-            android:pathData="M21,36 L11,46 L14,50 L23,44 Z" />
+            android:pathData="M50,10 C38,24 34,42 35,64 M50,10 C62,24 66,42 65,64"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:strokeWidth="4.5">
+            <aapt:attr name="android:strokeColor">
+                <gradient android:endX="50" android:endY="90" android:startX="50" android:startY="10" android:type="linear">
+                    <item android:color="@color/brand_cyan_electric" android:offset="0.0" />
+                    <item android:color="@color/brand_blue_cobalt" android:offset="1.0" />
+                </gradient>
+            </aapt:attr>
+        </path>
         <path
-            android:fillColor="#2979FF"
-            android:pathData="M43,36 L53,46 L50,50 L41,44 Z" />
+            android:pathData="M40,26 L60,26 M50,34.5 A5.5,5.5 0 1,0 50,45.5 A5.5,5.5 0 1,0 50,34.5 Z"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:strokeWidth="4.2">
+            <aapt:attr name="android:strokeColor">
+                <gradient android:endX="50" android:endY="90" android:startX="50" android:startY="10" android:type="linear">
+                    <item android:color="@color/brand_cyan_electric" android:offset="0.0" />
+                    <item android:color="@color/brand_blue_cobalt" android:offset="1.0" />
+                </gradient>
+            </aapt:attr>
+        </path>
         <path
-            android:fillColor="#FFFFFF"
-            android:pathData="M32,6 C24,14 21,26 22,42 L42,42 C43,26 40,14 32,6 Z" />
-        <path
-            android:fillColor="#00E5FF"
-            android:pathData="M32,6 C28.5,9.5 26.2,14 25,18 L39,18 C37.8,14 35.5,9.5 32,6 Z" />
-        <path
-            android:fillColor="#0E121D"
-            android:strokeColor="#00E5FF"
-            android:strokeWidth="2"
-            android:pathData="M32,23 A5,5 0 1,0 32,33 A5,5 0 1,0 32,23 Z" />
-        <path
-            android:fillColor="#8000E5FF"
-            android:pathData="M26,45 L38,45 L32,60 Z" />
+            android:pathData="M50,63 C46,56 36,56 36,63 C36,70 46,70 50,63 C54,56 64,56 64,63 C64,70 54,70 50,63 Z M35,51 C26,56 24,66 25,75 L35,67 M65,51 C74,56 76,66 75,75 L65,67 M43,75 L50,89 L57,75"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:strokeWidth="4.5">
+            <aapt:attr name="android:strokeColor">
+                <gradient android:endX="50" android:endY="90" android:startX="50" android:startY="10" android:type="linear">
+                    <item android:color="@color/brand_cyan_electric" android:offset="0.0" />
+                    <item android:color="@color/brand_blue_cobalt" android:offset="1.0" />
+                </gradient>
+            </aapt:attr>
+        </path>
     </group>
 
-    <!-- Geometric Vector Text: OS BOOST -->
+    <!-- Center Divider Hairline (20% alpha) -->
+    <path
+        android:pathData="M132,46 L132,134"
+        android:strokeAlpha="0.20"
+        android:strokeColor="@color/brand_cyan_electric"
+        android:strokeWidth="1.5" />
+
+    <!-- Right: OS (Electric Cyan) + B∞ST (Pure White with fused ∞) -->
     <!-- O -->
     <path
-        android:strokeColor="#FFFFFF"
-        android:strokeWidth="4.2"
+        android:pathData="M153,78 L157,78 A5,5 0 0,1 162,83 L162,97 A5,5 0 0,1 157,102 L153,102 A5,5 0 0,1 148,97 L148,83 A5,5 0 0,1 153,78 Z"
+        android:strokeColor="@color/brand_cyan_electric"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
-        android:pathData="M134,76 L138,76 A6,6 0 0,1 144,82 L144,98 A6,6 0 0,1 138,104 L134,104 A6,6 0 0,1 128,98 L128,82 A6,6 0 0,1 134,76 Z" />
+        android:strokeWidth="3.8" />
     <!-- S -->
     <path
-        android:strokeColor="#FFFFFF"
-        android:strokeWidth="4.2"
+        android:pathData="M180,82 A4,4 0 0,0 176,78 L172,78 A4,4 0 0,0 168,82 L168,85 A4,4 0 0,0 172,89 L176,89 A4,4 0 0,1 180,93 L180,98 A4,4 0 0,1 176,102 L172,102 A4,4 0 0,1 168,98"
+        android:strokeColor="@color/brand_cyan_electric"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
-        android:pathData="M164,81 A5,5 0 0,0 159,76 L155,76 A5,5 0 0,0 150,81 L150,84 A5,5 0 0,0 155,89 L159,89 A5,5 0 0,1 164,94 L164,99 A5,5 0 0,1 159,104 L155,104 A5,5 0 0,1 150,99" />
+        android:strokeWidth="3.8" />
+
     <!-- B -->
     <path
-        android:strokeColor="#00E5FF"
-        android:strokeWidth="4.2"
+        android:pathData="M194,102 L194,78 L202,78 A4.5,4.5 0 0,1 206.5,82.5 L206.5,85 A4.5,4.5 0 0,1 202,89.5 L194,89.5 M202,89.5 A4.5,4.5 0 0,1 207.5,94 L207.5,97.5 A4.5,4.5 0 0,1 202,102 L194,102"
+        android:strokeColor="@color/brand_white_pure"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
-        android:pathData="M178,104 L178,76 L188,76 A5,5 0 0,1 193,81 L193,84 A5,5 0 0,1 188,89 L178,89 M188,89 A5,5 0 0,1 194,94 L194,99 A5,5 0 0,1 188,104 L178,104" />
-    <!-- O -->
+        android:strokeWidth="3.8" />
+    <!-- Fused Infinity Symbol (∞) -->
     <path
-        android:strokeColor="#00E5FF"
-        android:strokeWidth="4.2"
+        android:pathData="M227,90 C223.5,82.5 213.5,82.5 213.5,90 C213.5,97.5 223.5,97.5 227,90 C230.5,82.5 240.5,82.5 240.5,90 C240.5,97.5 230.5,97.5 227,90 Z"
+        android:strokeColor="@color/brand_white_pure"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
-        android:pathData="M207,76 L211,76 A6,6 0 0,1 217,82 L217,98 A6,6 0 0,1 211,104 L207,104 A6,6 0 0,1 201,98 L201,82 A6,6 0 0,1 207,76 Z" />
-    <!-- O -->
-    <path
-        android:strokeColor="#00E5FF"
-        android:strokeWidth="4.2"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round"
-        android:pathData="M230,76 L234,76 A6,6 0 0,1 240,82 L240,98 A6,6 0 0,1 234,104 L230,104 A6,6 0 0,1 224,98 L224,82 A6,6 0 0,1 230,76 Z" />
+        android:strokeWidth="3.8" />
     <!-- S -->
     <path
-        android:strokeColor="#00E5FF"
-        android:strokeWidth="4.2"
+        android:pathData="M259,82 A4,4 0 0,0 255,78 L251,78 A4,4 0 0,0 247,82 L247,85 A4,4 0 0,0 251,89 L255,89 A4,4 0 0,1 259,93 L259,98 A4,4 0 0,1 255,102 L251,102 A4,4 0 0,1 247,98"
+        android:strokeColor="@color/brand_white_pure"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
-        android:pathData="M261,81 A5,5 0 0,0 256,76 L252,76 A5,5 0 0,0 247,81 L247,84 A5,5 0 0,0 252,89 L256,89 A5,5 0 0,1 261,94 L261,99 A5,5 0 0,1 256,104 L252,104 A5,5 0 0,1 247,99" />
+        android:strokeWidth="3.8" />
     <!-- T -->
     <path
-        android:strokeColor="#00E5FF"
-        android:strokeWidth="4.2"
+        android:pathData="M265,78 L280,78 M272.5,78 L272.5,102"
+        android:strokeColor="@color/brand_white_pure"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
-        android:pathData="M268,76 L284,76 M276,76 L276,104" />
-
-    <!-- Neon Underline Accent -->
-    <path
-        android:strokeColor="#00E5FF"
-        android:strokeWidth="3"
-        android:strokeLineCap="round"
-        android:pathData="M128,116 L236,116" />
-    <path
-        android:strokeColor="#2979FF"
-        android:strokeWidth="3"
-        android:strokeLineCap="round"
-        android:pathData="M244,116 L284,116" />
+        android:strokeWidth="3.8" />
 
 </vector>
-

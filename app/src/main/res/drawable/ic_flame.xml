@@ -5,15 +5,14 @@
     android:viewportWidth="32"
     android:viewportHeight="32">
 
-    <!-- Outer Cyan Exhaust Glow -->
     <path
-        android:fillColor="#8000E5FF"
+        android:fillAlpha="0.55"
+        android:fillColor="@color/brand_cyan_electric"
         android:pathData="M9,2 L23,2 C23,12 19,24 16,30 C13,24 9,12 9,2 Z" />
 
-    <!-- Inner Bright Core -->
     <path
-        android:fillColor="#FFE0FFFF"
+        android:fillAlpha="0.9"
+        android:fillColor="@color/brand_white_pure"
         android:pathData="M12,2 L20,2 C20,9 17.8,18 16,22 C14.2,18 12,9 12,2 Z" />
 
 </vector>
-

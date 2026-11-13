@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="neon_bg_card">#EE121622</color>
-    <color name="neon_bg_surface">#FF1A2033</color>
-    <color name="neon_cyan">#FF00E5FF</color>
-    <color name="neon_cyan_soft">#3300E5FF</color>
-    <color name="neon_blue">#FF2979FF</color>
-    <color name="neon_emerald">#FF00E676</color>
-    <color name="neon_emerald_soft">#2600E676</color>
-    <color name="neon_text_primary">#FFFFFFFF</color>
-    <color name="neon_text_secondary">#FF94A3B8</color>
-    <color name="neon_track_bg">#FF1E293B</color>
-    <color name="neon_scrim">#66050811</color>
+    <color name="brand_bg_obsidian">#0D1117</color>
+    <color name="brand_bg_slate">#131922</color>
+    <color name="brand_cyan_electric">#00E5FF</color>
+    <color name="brand_blue_cobalt">#1E50B5</color>
+    <color name="brand_white_pure">#FFFFFF</color>
+    <color name="brand_black_pure">#000000</color>
+    <color name="brand_silver_muted">#8A94A6</color>
 </resources>
-

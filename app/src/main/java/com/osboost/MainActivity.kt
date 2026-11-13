@@ -153,10 +153,10 @@ class MainActivity : Activity() {
         // Status badge
         if (result.isOptimized) {
             tvStatusBadge.setText(R.string.status_optimized)
-            tvStatusBadge.setTextColor(ContextCompat.getColor(this, R.color.neon_cyan))
+            tvStatusBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_cyan_electric))
         } else {
             tvStatusBadge.setText(R.string.status_analyzed)
-            tvStatusBadge.setTextColor(ContextCompat.getColor(this, R.color.neon_blue))
+            tvStatusBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_silver_muted))
         }
 
         // Swap scanning label for hero metrics
@@ -169,10 +169,10 @@ class MainActivity : Activity() {
 
         if (result.stats.deltaAvailableMB > 0) {
             tvDeltaBadge.text = getString(R.string.fmt_freed_mb, result.stats.deltaAvailableMB)
-            tvDeltaBadge.setTextColor(ContextCompat.getColor(this, R.color.neon_emerald))
+            tvDeltaBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_cyan_electric))
         } else {
             tvDeltaBadge.setText(R.string.label_memory_healthy)
-            tvDeltaBadge.setTextColor(ContextCompat.getColor(this, R.color.neon_cyan))
+            tvDeltaBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_silver_muted))
         }
 
         // Update progress bar to actual used RAM percentage

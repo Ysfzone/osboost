@@ -21,7 +21,7 @@
         android:paddingEnd="24dp"
         android:paddingBottom="22dp">
 
-        <!-- Header: Brand + Status Badge -->
+        <!-- Header: Brand Wordmark (OS B∞ST) + Status Badge -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,13 +29,24 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tvAppTitleOs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.08"
+                android:text="OS "
+                android:textColor="@color/brand_cyan_electric"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/tvAppTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
                 android:letterSpacing="0.08"
-                android:text="@string/app_name"
-                android:textColor="@color/neon_text_primary"
+                android:text="B∞ST"
+                android:textColor="@color/brand_white_pure"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -55,7 +66,7 @@
                 android:paddingEnd="10dp"
                 android:paddingBottom="4dp"
                 android:text="@string/status_scanning"
-                android:textColor="@color/neon_cyan"
+                android:textColor="@color/brand_cyan_electric"
                 android:textSize="11sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -81,11 +92,11 @@
 
             <ImageView
                 android:id="@+id/ivRocket"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/cd_rocket"
-                android:src="@drawable/ic_rocket" />
+                android:src="@drawable/ic_osboost_rocket" />
         </FrameLayout>
 
         <!-- Scanning Label -->
@@ -96,7 +107,7 @@
             android:layout_marginTop="4dp"
             android:gravity="center"
             android:text="@string/label_scanning_ram"
-            android:textColor="@color/neon_text_secondary"
+            android:textColor="@color/brand_silver_muted"
             android:textSize="13sp" />
 
         <!-- Results Hero Block (revealed at 1400ms+) -->
@@ -113,7 +124,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_available_ram"
-                android:textColor="@color/neon_text_secondary"
+                android:textColor="@color/brand_silver_muted"
                 android:textSize="12sp" />
 
             <TextView
@@ -122,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="@color/neon_text_primary"
+                android:textColor="@color/brand_white_pure"
                 android:textSize="36sp"
                 android:textStyle="bold" />
 
@@ -136,7 +147,7 @@
                 android:paddingTop="4dp"
                 android:paddingEnd="12dp"
                 android:paddingBottom="4dp"
-                android:textColor="@color/neon_emerald"
+                android:textColor="@color/brand_cyan_electric"
                 android:textSize="13sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -159,7 +170,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:textColor="@color/neon_text_secondary"
+            android:textColor="@color/brand_silver_muted"
             android:textSize="12sp"
             android:visibility="gone" />
 
@@ -177,7 +188,7 @@
             android:nextFocusLeft="@id/btnUpdate"
             android:nextFocusRight="@id/btnUpdate"
             android:textAllCaps="false"
-            android:textColor="@color/neon_cyan"
+            android:textColor="@color/brand_cyan_electric"
             android:textSize="13sp"
             android:textStyle="bold"
             android:visibility="gone" />

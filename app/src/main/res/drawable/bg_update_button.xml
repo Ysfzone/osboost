@@ -2,30 +2,29 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_focused="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/neon_cyan_soft" />
+            <solid android:color="@color/brand_blue_cobalt" />
             <corners android:radius="12dp" />
             <stroke
                 android:width="2dp"
-                android:color="@color/neon_cyan" />
+                android:color="@color/brand_cyan_electric" />
         </shape>
     </item>
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/neon_cyan_soft" />
+            <solid android:color="@color/brand_blue_cobalt" />
             <corners android:radius="12dp" />
             <stroke
                 android:width="2dp"
-                android:color="@color/neon_cyan" />
+                android:color="@color/brand_cyan_electric" />
         </shape>
     </item>
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/neon_bg_surface" />
+            <solid android:color="@color/brand_bg_obsidian" />
             <corners android:radius="12dp" />
             <stroke
                 android:width="1dp"
-                android:color="@color/neon_blue" />
+                android:color="@color/brand_blue_cobalt" />
         </shape>
     </item>
 </selector>
-

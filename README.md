@@ -1,7 +1,16 @@
-# OS BOOST — Android TV RAM Cleaner & Analyzer
+<div align="center">
+  <img src="assets/logo.svg" alt="OS B∞ST Logo" width="360" />
 
-[![Release](https://img.shields.io/github/v/release/ysfzone/osboost?style=flat-square&color=00E5FF)](https://github.com/ysfzone/osboost/releases)
-[![Android](https://img.shields.io/badge/Android-9%20to%2015-2979FF?style=flat-square)](https://github.com/ysfzone/osboost)
+  <h1>OS B∞ST — Android TV RAM Cleaner &amp; Analyzer</h1>
+
+  <p>
+    <a href="https://github.com/ysfzone/osboost/releases">
+      <img src="https://img.shields.io/github/v/release/ysfzone/osboost?style=for-the-badge&color=00E5FF&labelColor=131922" alt="Latest Release" />
+    </a>
+    <img src="https://img.shields.io/badge/Android-9%20to%2015-00E5FF?style=for-the-badge&labelColor=131922" alt="Android 9 to 15" />
+    <img src="https://img.shields.io/badge/Package-com.osboost-00E5FF?style=for-the-badge&labelColor=131922" alt="Package com.osboost" />
+  </p>
+</div>
 
 Ultra-lightweight (~245 KB), 100% native Kotlin RAM cleaner and memory analyzer built specifically for **Android TV**, **Google TV**, and **TV Boxes** (`minSdk 28`, `targetSdk 35`, package `com.osboost`).
 
@@ -15,7 +24,7 @@ Ultra-lightweight (~245 KB), 100% native Kotlin RAM cleaner and memory analyzer 
   - **Tier 2 (Android 14+ / API 34+ with Shizuku or Root):** Silently detects authorized Shizuku or `su` and runs `am force-stop` for true deep cleaning—never nags if absent.
   - **Tier 3 (Android 14+ Standard Fallback):** Runs `System.gc()` and accurate Before/After RAM diagnostics (`ANALYZED` badge).
 - **Smart Protection Rules:** Automatically excludes your active TV Home Launcher, `com.osboost`, SystemUI, Google Play Services, Android TV Remote, Bluetooth/Wi-Fi stack, active keyboards (IMEs), and any app currently playing audio/IPTV media.
-- **TV-First Dark Neon UI:** `420dp` floating translucent card, vector rocket launch animation, synthesized `AudioTrack` sound effects (zero audio asset bloat), and full D-Pad / TV Remote navigation.
+- **TV-First Branded UI:** `420dp` floating `#131922` card, Infinity Rocket launch animation, synthesized `AudioTrack` sound effects (zero audio asset bloat), and full D-Pad / TV Remote navigation.
 - **Localized Automatically:** English, Arabic (full RTL), and French.
 - **Silent GitHub Auto-Updater:** Checks [`ysfzone/osboost` Releases](https://github.com/ysfzone/osboost/releases) asynchronously and surfaces a D-Pad-focused update button only when a newer APK is available.
 
@@ -43,7 +52,7 @@ On Android 14+ (API 34+), Android restricts third-party apps from killing other 
 
 ## نظرة عامة (العربية)
 
-تطبيق **OS BOOST** هو منظف ومحلل ذاكرة عشوائية (RAM) فائق الخفة (~245 كيلوبايت) مخصص لأجهزة **Android TV** و **Google TV** و **TV Box**، مبني بالكامل بلغة Kotlin الأصلية دون أي خدمات خلفية دائمة.
+تطبيق **OS B∞ST (OS BOOST)** هو منظف ومحلل ذاكرة عشوائية (RAM) فائق الخفة (~245 كيلوبايت) مخصص لأجهزة **Android TV** و **Google TV** و **TV Box**، مبني بالكامل بلغة Kotlin الأصلية دون أي خدمات خلفية دائمة.
 
 ### المميزات الرئيسية
 - **محرك تنظيف هجين من 3 مستويات:**
