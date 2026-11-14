@@ -13,6 +13,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
@@ -49,6 +50,7 @@ class MainActivity : Activity() {
     private lateinit var ivFlame: ImageView
     private lateinit var llCleaningPill: LinearLayout
     private lateinit var llResults: LinearLayout
+    private lateinit var flDoneBadge: FrameLayout
     private lateinit var tvHeroRam: TextView
     private lateinit var tvDeltaBadge: TextView
     private lateinit var pbRam: ProgressBar
@@ -74,6 +76,7 @@ class MainActivity : Activity() {
         ivFlame = findViewById(R.id.ivFlame)
         llCleaningPill = findViewById(R.id.llCleaningPill)
         llResults = findViewById(R.id.llResults)
+        flDoneBadge = findViewById(R.id.flDoneBadge)
         tvHeroRam = findViewById(R.id.tvHeroRam)
         tvDeltaBadge = findViewById(R.id.tvDeltaBadge)
         pbRam = findViewById(R.id.pbRam)
@@ -279,7 +282,18 @@ class MainActivity : Activity() {
     private fun scheduleAutoDismiss(delayMs: Long = 2000L) {
         autoDismissJob?.cancel()
         autoDismissJob = uiScope.launch {
-            delay(delayMs)
+            val fadeLeadMs = 800L
+            if (delayMs > fadeLeadMs) {
+                delay(delayMs - fadeLeadMs)
+                flDoneBadge.animate()
+                    .alpha(0f)
+                    .setDuration(250L)
+                    .setInterpolator(DecelerateInterpolator())
+                    .start()
+                delay(fadeLeadMs)
+            } else {
+                delay(delayMs)
+            }
             dismissNow()
         }
     }

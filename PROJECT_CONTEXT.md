@@ -76,3 +76,4 @@
 - [x] Release `v1.1.1`: Borderless full-bleed TV banner & launcher icons, +14% emblem scale boost, and multi-density PNG asset buckets (`mdpi`–`xxxhdpi`, `xhdpi`/`xxhdpi` banners, `512×512` master icon)
 - [x] Release `v1.2.0`: Corner-glow borderless divider-free banner, top-right strategy pill, full-height rocket launch, pulsing update glow, background media cleanup, and unmanaged `su` root support
 - [x] Release `v1.2.1`: Fixed-height popup card, rocket fly-away animation, and DONE completion badge
+- [x] Release `v1.2.2`: Optical vertical spacing, minimalist checkmark symbol, and choreographed fade-out

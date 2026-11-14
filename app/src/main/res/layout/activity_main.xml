@@ -6,18 +6,15 @@
 
     <LinearLayout
         android:id="@+id/popupCard"
-        android:layout_width="440dp"
-        android:layout_height="310dp"
+        android:layout_width="430dp"
+        android:layout_height="275dp"
         android:layout_gravity="center"
         android:background="@drawable/bg_popup_neon"
         android:clipChildren="true"
         android:clipToPadding="true"
         android:elevation="18dp"
         android:orientation="vertical"
-        android:paddingStart="24dp"
-        android:paddingTop="18dp"
-        android:paddingEnd="24dp"
-        android:paddingBottom="16dp">
+        android:padding="20dp">
 
         <!-- Header: Brand Wordmark (OS B∞ST) + Permanent Active Strategy/Mode Pill -->
         <LinearLayout
@@ -86,11 +83,14 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Shared Central Stage (Fixed-Height Overlay: Cleaning Stage + Results Stage) -->
+        <!-- Shared Central Stage (Optically Centered Overlay: Cleaning Stage + Results Stage) -->
         <FrameLayout
             android:id="@+id/centralStage"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_weight="1"
             android:clipChildren="true"
             android:clipToPadding="false">
@@ -99,38 +99,39 @@
             <LinearLayout
                 android:id="@+id/llCleaningStage"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <FrameLayout
                     android:id="@+id/rocketStage"
                     android:layout_width="match_parent"
-                    android:layout_height="112dp"
+                    android:layout_height="96dp"
                     android:clipChildren="false"
                     android:clipToPadding="false">
 
                     <View
                         android:id="@+id/viewRocketAura"
-                        android:layout_width="112dp"
-                        android:layout_height="112dp"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
                         android:layout_gravity="center"
                         android:background="@drawable/bg_rocket_aura" />
 
                     <ImageView
                         android:id="@+id/ivFlame"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="34dp"
+                        android:layout_marginTop="30dp"
                         android:alpha="0"
                         android:contentDescription="@null"
                         android:src="@drawable/ic_flame" />
 
                     <ImageView
                         android:id="@+id/ivRocket"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
                         android:layout_gravity="center"
                         android:contentDescription="@string/cd_rocket"
                         android:src="@drawable/ic_osboost_rocket" />
@@ -140,14 +141,14 @@
                     android:id="@+id/llCleaningPill"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="6dp"
                     android:background="@drawable/bg_mode_pill"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingStart="16dp"
-                    android:paddingTop="6dp"
+                    android:paddingTop="5dp"
                     android:paddingEnd="16dp"
-                    android:paddingBottom="6dp">
+                    android:paddingBottom="5dp">
 
                     <ImageView
                         android:layout_width="7dp"
@@ -169,52 +170,37 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Results Stage: Minimalist DONE Badge + Hero RAM + RAM OPTIMIZED Pill -->
+            <!-- Results Stage: Symbol-Only Circular Checkmark + Hero RAM + RAM OPTIMIZED Pill -->
             <LinearLayout
                 android:id="@+id/llResults"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:visibility="gone">
 
-                <!-- DONE Checkmark Badge -->
-                <LinearLayout
-                    android:id="@+id/llDoneBadge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_mode_pill"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingStart="12dp"
-                    android:paddingTop="4dp"
-                    android:paddingEnd="12dp"
-                    android:paddingBottom="4dp">
+                <!-- Minimalist Circular Checkmark Badge (Symbol Only, 34dp x 34dp) -->
+                <FrameLayout
+                    android:id="@+id/flDoneBadge"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/bg_check_circle_cyan"
+                    android:contentDescription="@string/status_done">
 
                     <ImageView
-                        android:layout_width="13dp"
-                        android:layout_height="13dp"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
                         android:contentDescription="@null"
                         android:src="@drawable/ic_check_cyan" />
-
-                    <TextView
-                        android:id="@+id/tvDoneLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:fontFamily="sans-serif-medium"
-                        android:letterSpacing="0.08"
-                        android:text="@string/status_done"
-                        android:textColor="@color/brand_cyan_electric"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                </FrameLayout>
 
                 <TextView
                     android:id="@+id/tvAvailableLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/label_available_ram"
                     android:textColor="@color/brand_silver_muted"
                     android:textSize="11sp" />
@@ -225,14 +211,14 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
                     android:textColor="@color/brand_white_pure"
-                    android:textSize="34sp"
+                    android:textSize="32sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvDeltaBadge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="6dp"
                     android:background="@drawable/bg_badge_neon"
                     android:paddingStart="14dp"
                     android:paddingTop="4dp"
@@ -251,7 +237,6 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="7dp"
-            android:layout_marginTop="6dp"
             android:max="100"
             android:progress="0"
             android:progressDrawable="@drawable/progress_neon" />
@@ -261,7 +246,7 @@
             android:id="@+id/tvRamUsage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="8dp"
             android:gravity="center"
             android:textColor="@color/brand_silver_muted"
             android:textSize="11sp"
@@ -272,7 +257,7 @@
             android:id="@+id/btnUpdate"
             android:layout_width="match_parent"
             android:layout_height="34dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/bg_update_button"
             android:focusable="true"
             android:focusableInTouchMode="true"

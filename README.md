@@ -5,7 +5,7 @@
 
   <p>
     <a href="https://github.com/ysfzone/osboost/releases/latest">
-      <img src="https://img.shields.io/badge/Version-v1.2.1-00E5FF?style=for-the-badge&labelColor=131922" alt="Version v1.2.1" />
+      <img src="https://img.shields.io/badge/Version-v1.2.2-00E5FF?style=for-the-badge&labelColor=131922" alt="Version v1.2.2" />
     </a>
     <img src="https://img.shields.io/badge/Android-9%20to%2015-00E5FF?style=for-the-badge&labelColor=131922" alt="Android 9 to 15" />
     <img src="https://img.shields.io/badge/Package-com.osboost-00E5FF?style=for-the-badge&labelColor=131922" alt="Package com.osboost" />
@@ -34,9 +34,9 @@ Ultra-lightweight (~245 KB), 100% native Kotlin RAM cleaner and memory analyzer 
 ---
 
 ## Download & Install
-Download the latest signed APK ([`OS-BOOST-v1.2.1.apk`](https://github.com/ysfzone/osboost/releases/latest)) from [GitHub Releases](https://github.com/ysfzone/osboost/releases/latest) and sideload via ADB:
+Download the latest signed APK ([`OS-BOOST-v1.2.2.apk`](https://github.com/ysfzone/osboost/releases/latest)) from [GitHub Releases](https://github.com/ysfzone/osboost/releases/latest) and sideload via ADB:
 ```bash
-adb install -r OS-BOOST-v1.2.1.apk
+adb install -r OS-BOOST-v1.2.2.apk
 ```
 
 ---
