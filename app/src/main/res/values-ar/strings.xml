@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">OS BOOST</string>
     <string name="status_cleaning">جاري التنظيف…</string>
+    <string name="status_done">تم</string>
     <string name="mode_deep_root">تعزيز عميق • ROOT</string>
     <string name="mode_deep_shizuku">تعزيز عميق • SHIZUKU</string>
     <string name="mode_standard">تعزيز قياسي</string>

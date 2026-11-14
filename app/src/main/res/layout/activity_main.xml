@@ -2,24 +2,22 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rootContainer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipChildren="false"
-    android:clipToPadding="false">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/popupCard"
-        android:layout_width="420dp"
-        android:layout_height="wrap_content"
+        android:layout_width="440dp"
+        android:layout_height="310dp"
         android:layout_gravity="center"
         android:background="@drawable/bg_popup_neon"
-        android:clipChildren="false"
-        android:clipToPadding="false"
+        android:clipChildren="true"
+        android:clipToPadding="true"
         android:elevation="18dp"
         android:orientation="vertical"
         android:paddingStart="24dp"
-        android:paddingTop="20dp"
+        android:paddingTop="18dp"
         android:paddingEnd="24dp"
-        android:paddingBottom="20dp">
+        android:paddingBottom="16dp">
 
         <!-- Header: Brand Wordmark (OS B∞ST) + Permanent Active Strategy/Mode Pill -->
         <LinearLayout
@@ -88,145 +86,193 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Rocket Launch Stage -->
+        <!-- Shared Central Stage (Fixed-Height Overlay: Cleaning Stage + Results Stage) -->
         <FrameLayout
-            android:id="@+id/rocketStage"
+            android:id="@+id/centralStage"
             android:layout_width="match_parent"
-            android:layout_height="116dp"
-            android:layout_marginTop="12dp"
-            android:clipChildren="false"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipChildren="true"
             android:clipToPadding="false">
 
-            <View
-                android:id="@+id/viewRocketAura"
-                android:layout_width="116dp"
-                android:layout_height="116dp"
-                android:layout_gravity="center"
-                android:background="@drawable/bg_rocket_aura" />
+            <!-- Cleaning Stage: Infinity Rocket + Aura + Centered Cleaning... Pill -->
+            <LinearLayout
+                android:id="@+id/llCleaningStage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/ivFlame"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="36dp"
-                android:alpha="0"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_flame" />
+                <FrameLayout
+                    android:id="@+id/rocketStage"
+                    android:layout_width="match_parent"
+                    android:layout_height="112dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
 
-            <ImageView
-                android:id="@+id/ivRocket"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_gravity="center"
-                android:contentDescription="@string/cd_rocket"
-                android:src="@drawable/ic_osboost_rocket" />
+                    <View
+                        android:id="@+id/viewRocketAura"
+                        android:layout_width="112dp"
+                        android:layout_height="112dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_rocket_aura" />
+
+                    <ImageView
+                        android:id="@+id/ivFlame"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="34dp"
+                        android:alpha="0"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_flame" />
+
+                    <ImageView
+                        android:id="@+id/ivRocket"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/cd_rocket"
+                        android:src="@drawable/ic_osboost_rocket" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/llCleaningPill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_mode_pill"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="6dp">
+
+                    <ImageView
+                        android:layout_width="7dp"
+                        android:layout_height="7dp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/dot_glow_cyan" />
+
+                    <TextView
+                        android:id="@+id/tvCleaningStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="0.04"
+                        android:text="@string/status_cleaning"
+                        android:textColor="@color/brand_cyan_electric"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Results Stage: Minimalist DONE Badge + Hero RAM + RAM OPTIMIZED Pill -->
+            <LinearLayout
+                android:id="@+id/llResults"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- DONE Checkmark Badge -->
+                <LinearLayout
+                    android:id="@+id/llDoneBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_mode_pill"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="4dp">
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_check_cyan" />
+
+                    <TextView
+                        android:id="@+id/tvDoneLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="0.08"
+                        android:text="@string/status_done"
+                        android:textColor="@color/brand_cyan_electric"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvAvailableLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/label_available_ram"
+                    android:textColor="@color/brand_silver_muted"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tvHeroRam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/brand_white_pure"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDeltaBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_badge_neon"
+                    android:paddingStart="14dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="14dp"
+                    android:paddingBottom="4dp"
+                    android:textColor="@color/brand_cyan_electric"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
         </FrameLayout>
-
-        <!-- Centered Status Pill Below Rocket (Hidden on Results) -->
-        <LinearLayout
-            android:id="@+id/llCleaningPill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/bg_mode_pill"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="18dp"
-            android:paddingTop="7dp"
-            android:paddingEnd="18dp"
-            android:paddingBottom="7dp">
-
-            <ImageView
-                android:layout_width="7dp"
-                android:layout_height="7dp"
-                android:contentDescription="@null"
-                android:src="@drawable/dot_glow_cyan" />
-
-            <TextView
-                android:id="@+id/tvCleaningStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:fontFamily="sans-serif-medium"
-                android:letterSpacing="0.04"
-                android:text="@string/status_cleaning"
-                android:textColor="@color/brand_cyan_electric"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <!-- Results Hero Block (revealed at 1400ms+) -->
-        <LinearLayout
-            android:id="@+id/llResults"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/tvAvailableLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/label_available_ram"
-                android:textColor="@color/brand_silver_muted"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tvHeroRam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="@color/brand_white_pure"
-                android:textSize="36sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvDeltaBadge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/bg_badge_neon"
-                android:paddingStart="14dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="14dp"
-                android:paddingBottom="5dp"
-                android:textColor="@color/brand_cyan_electric"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-        </LinearLayout>
 
         <!-- Neon Progress Bar -->
         <ProgressBar
             android:id="@+id/pbRam"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="7dp"
+            android:layout_marginTop="6dp"
             android:max="100"
             android:progress="0"
             android:progressDrawable="@drawable/progress_neon" />
 
-        <!-- RAM Sub-metrics -->
+        <!-- RAM Sub-metrics (invisible during scan to lock fixed height) -->
         <TextView
             android:id="@+id/tvRamUsage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="6dp"
             android:gravity="center"
             android:textColor="@color/brand_silver_muted"
-            android:textSize="12sp"
-            android:visibility="gone" />
+            android:textSize="11sp"
+            android:visibility="invisible" />
 
         <!-- Optional Silent GitHub Update Button (D-Pad Focusable + Pulsing Glow) -->
         <Button
             android:id="@+id/btnUpdate"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="14dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="6dp"
             android:background="@drawable/bg_update_button"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -236,7 +282,7 @@
             android:nextFocusRight="@id/btnUpdate"
             android:textAllCaps="false"
             android:textColor="@color/brand_cyan_electric"
-            android:textSize="13sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:visibility="gone" />
 
@@ -244,7 +290,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="8dp"
             android:gravity="center"
             android:layoutDirection="ltr"
             android:orientation="horizontal">

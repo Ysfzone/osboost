@@ -1,5 +1,7 @@
 package com.osboost
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
@@ -8,9 +10,9 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.widget.Button
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
@@ -41,7 +43,8 @@ class MainActivity : Activity() {
 
     private lateinit var popupCard: LinearLayout
     private lateinit var tvModeLabel: TextView
-    private lateinit var rocketStage: FrameLayout
+    private lateinit var llCleaningStage: LinearLayout
+    private lateinit var viewRocketAura: View
     private lateinit var ivRocket: ImageView
     private lateinit var ivFlame: ImageView
     private lateinit var llCleaningPill: LinearLayout
@@ -65,7 +68,8 @@ class MainActivity : Activity() {
     private fun bindViews() {
         popupCard = findViewById(R.id.popupCard)
         tvModeLabel = findViewById(R.id.tvModeLabel)
-        rocketStage = findViewById(R.id.rocketStage)
+        llCleaningStage = findViewById(R.id.llCleaningStage)
+        viewRocketAura = findViewById(R.id.viewRocketAura)
         ivRocket = findViewById(R.id.ivRocket)
         ivFlame = findViewById(R.id.ivFlame)
         llCleaningPill = findViewById(R.id.llCleaningPill)
@@ -110,14 +114,13 @@ class MainActivity : Activity() {
 
             delay(250L)
 
-            // Phase 2 (250–1400ms): Full-height vertical rocket launch + flame + scan bar
-            startRocketLaunchAnimation(durationMs = 1150L)
+            // Phase 2 (250–1400ms): Rocket ignition + scan progress bar
+            startRocketScanAnimation(durationMs = 1150L)
             delay(1150L)
 
-            // Phase 3 (1400ms+): Wait for cleaner result, hide Cleaning pill, render results
+            // Phase 3 (1400ms+): Rocket fly-away fade-out + DONE results fade-in
             val result = cleanTask.await()
-            stopFlameAnimation()
-            renderResults(result)
+            playRocketFlyAwayAndShowResults(result)
 
             val availableUpdate = updateTask.await()
             if (availableUpdate != null) {
@@ -128,15 +131,10 @@ class MainActivity : Activity() {
         }
     }
 
-    private fun startRocketLaunchAnimation(durationMs: Long) {
-        // Ascend smoothly all the way up to the top inner edge of popupCard
-        val distanceToTopEdge = (rocketStage.top + ivRocket.top - popupCard.paddingTop)
-            .toFloat()
-            .takeIf { it > 0f }
-            ?: (72f * resources.displayMetrics.density)
-        val apexY = -distanceToTopEdge
+    private fun startRocketScanAnimation(durationMs: Long) {
+        val hoverDp = -14f * resources.displayMetrics.density
 
-        ObjectAnimator.ofFloat(ivRocket, View.TRANSLATION_Y, 0f, apexY).apply {
+        ObjectAnimator.ofFloat(ivRocket, View.TRANSLATION_Y, 0f, hoverDp).apply {
             duration = durationMs
             interpolator = AccelerateDecelerateInterpolator()
             start()
@@ -154,7 +152,7 @@ class MainActivity : Activity() {
             repeatCount = ValueAnimator.INFINITE
             duration = 110L
         }
-        val flameFollow = ObjectAnimator.ofFloat(ivFlame, View.TRANSLATION_Y, 0f, apexY).apply {
+        val flameFollow = ObjectAnimator.ofFloat(ivFlame, View.TRANSLATION_Y, 0f, hoverDp).apply {
             duration = durationMs
             interpolator = AccelerateDecelerateInterpolator()
         }
@@ -164,9 +162,31 @@ class MainActivity : Activity() {
         }
     }
 
-    private fun stopFlameAnimation() {
+    private fun playRocketFlyAwayAndShowResults(result: CleanResult) {
         flameAnimator?.cancel()
-        ivFlame.animate().alpha(0f).setDuration(180L).start()
+        val flyAwayY = -140f * resources.displayMetrics.density
+        val flyDuration = 340L
+
+        val rocketFly = ObjectAnimator.ofFloat(ivRocket, View.TRANSLATION_Y, ivRocket.translationY, flyAwayY)
+        val rocketFade = ObjectAnimator.ofFloat(ivRocket, View.ALPHA, 1f, 0f)
+        val flameFly = ObjectAnimator.ofFloat(ivFlame, View.TRANSLATION_Y, ivFlame.translationY, flyAwayY)
+        val flameFade = ObjectAnimator.ofFloat(ivFlame, View.ALPHA, ivFlame.alpha, 0f)
+        val auraFade = ObjectAnimator.ofFloat(viewRocketAura, View.ALPHA, 1f, 0f)
+        val pillFade = ObjectAnimator.ofFloat(llCleaningPill, View.ALPHA, 1f, 0f)
+
+        AnimatorSet().apply {
+            playTogether(rocketFly, rocketFade, flameFly, flameFade, auraFade, pillFade)
+            duration = flyDuration
+            interpolator = AccelerateInterpolator()
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    llCleaningStage.visibility = View.GONE
+                }
+            })
+            start()
+        }
+
+        renderResults(result)
     }
 
     private fun renderResults(result: CleanResult) {
@@ -175,12 +195,18 @@ class MainActivity : Activity() {
 
         applyModeLabel(result.mode)
 
-        // Remove centered Cleaning... pill once results appear
-        llCleaningPill.visibility = View.GONE
-
         llResults.alpha = 0f
+        llResults.scaleX = 0.9f
+        llResults.scaleY = 0.9f
         llResults.visibility = View.VISIBLE
-        llResults.animate().alpha(1f).setDuration(220L).start()
+        llResults.animate()
+            .alpha(1f)
+            .scaleX(1f)
+            .scaleY(1f)
+            .setStartDelay(120L)
+            .setDuration(280L)
+            .setInterpolator(DecelerateInterpolator())
+            .start()
 
         tvHeroRam.text = result.stats.availableFormatted
 
@@ -210,7 +236,6 @@ class MainActivity : Activity() {
         btnUpdate.visibility = View.VISIBLE
         btnUpdate.requestFocus()
 
-        // Continuous pulsing glow/alpha animation on Update Available button
         val pulseAlpha = ObjectAnimator.ofFloat(btnUpdate, View.ALPHA, 1f, 0.65f).apply {
             repeatMode = ValueAnimator.REVERSE
             repeatCount = ValueAnimator.INFINITE

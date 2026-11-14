@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">OS BOOST</string>
     <string name="status_cleaning">Cleaning…</string>
+    <string name="status_done">DONE</string>
     <string name="mode_deep_root">DEEP BOOST • ROOT</string>
     <string name="mode_deep_shizuku">DEEP BOOST • SHIZUKU</string>
     <string name="mode_standard">STANDARD BOOST</string>
