@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">OS BOOST</string>
-    <string name="status_scanning">ANALYSE</string>
-    <string name="status_optimized">OPTIMISÉ</string>
-    <string name="status_analyzed">ANALYSÉ</string>
-    <string name="mode_deep_root">MODE : BOOST PROFOND • ROOT</string>
-    <string name="mode_deep_shizuku">MODE : BOOST PROFOND • SHIZUKU</string>
-    <string name="mode_standard">MODE : BOOST STANDARD</string>
-    <string name="mode_smart_analysis">MODE : ANALYSE INTELLIGENTE</string>
-    <string name="label_scanning_ram">Optimisation de la mémoire…</string>
+    <string name="status_cleaning">Nettoyage…</string>
+    <string name="mode_deep_root">BOOST PROFOND • ROOT</string>
+    <string name="mode_deep_shizuku">BOOST PROFOND • SHIZUKU</string>
+    <string name="mode_standard">BOOST STANDARD</string>
+    <string name="mode_smart_analysis">ANALYSE INTELLIGENTE</string>
     <string name="label_available_ram">RAM disponible</string>
-    <string name="label_memory_healthy">Mémoire saine</string>
+    <string name="label_ram_optimized">RAM OPTIMISÉE</string>
     <string name="fmt_freed_mb">+%d Mo libérés</string>
-    <string name="fmt_freed_and_cleaned">+%1$d Mo • %2$d apps nettoyées</string>
-    <string name="fmt_healthy_and_cleaned">Mémoire saine • %d apps nettoyées</string>
     <string name="fmt_ram_usage">Utilisée : %1$s / Total : %2$s</string>
     <string name="fmt_update_available">Mise à jour : %s</string>
     <string name="update_downloading">Téléchargement…</string>

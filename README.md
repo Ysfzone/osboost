@@ -5,7 +5,7 @@
 
   <p>
     <a href="https://github.com/ysfzone/osboost/releases/latest">
-      <img src="https://img.shields.io/badge/Version-v1.1.1-00E5FF?style=for-the-badge&labelColor=131922" alt="Version v1.1.1" />
+      <img src="https://img.shields.io/badge/Version-v1.2.0-00E5FF?style=for-the-badge&labelColor=131922" alt="Version v1.2.0" />
     </a>
     <img src="https://img.shields.io/badge/Android-9%20to%2015-00E5FF?style=for-the-badge&labelColor=131922" alt="Android 9 to 15" />
     <img src="https://img.shields.io/badge/Package-com.osboost-00E5FF?style=for-the-badge&labelColor=131922" alt="Package com.osboost" />
@@ -26,17 +26,17 @@ Ultra-lightweight (~245 KB), 100% native Kotlin RAM cleaner and memory analyzer 
   - **Tier 1 (Android 9–13 / API 28–33):** Cleans eligible background processes via `ActivityManager.killBackgroundProcesses`.
   - **Tier 2 (Android 14+ / API 34+ with Shizuku or Root):** Silently detects authorized Shizuku or `su` and runs `am force-stop` for true deep cleaning—never nags if absent.
   - **Tier 3 (Android 14+ Standard Fallback):** Runs `System.gc()` and accurate Before/After RAM diagnostics (`ANALYZED` badge).
-- **Smart Protection Rules:** Automatically excludes your active TV Home Launcher, `com.osboost`, SystemUI, Google Play Services, Android TV Remote, Bluetooth/Wi-Fi stack, active keyboards (IMEs), and any app currently playing audio/IPTV media.
-- **TV-First Translucent Glass UI & Mode Indicator:** `420dp` translucent glass card (`#131922` → `#0D1117`) with an explicit active engine mode pill (`DEEP BOOST • ROOT`, `DEEP BOOST • SHIZUKU`, `STANDARD BOOST`, `SMART ANALYSIS`), Infinity Rocket launch animation, synthesized `AudioTrack` sound effects, and full D-Pad navigation.
+- **Smart Protection Rules (Maximum RAM Recovery):** Automatically excludes `com.osboost`, your active TV Home Launcher, core Android system/UI/network/Bluetooth services, Google Play Core, and privilege managers (`Shizuku`, `Magisk`)—while actively stopping background IPTV, video, and music apps to maximize freed RAM.
+- **TV-First Translucent Glass UI & Mode Indicator:** `420dp` translucent glass card (`#131922` → `#0D1117`) with a permanent top-right active strategy pill (`DEEP BOOST • ROOT`, `DEEP BOOST • SHIZUKU`, `STANDARD BOOST`, `SMART ANALYSIS`), full-height Infinity Rocket launch animation, pulsing update glow, and full D-Pad navigation.
 - **Localized Automatically:** English, Arabic (full RTL), and French.
 - **Silent GitHub Auto-Updater:** Checks [`ysfzone/osboost` Releases](https://github.com/ysfzone/osboost/releases) asynchronously and surfaces a D-Pad-focused update button only when a newer APK is available.
 
 ---
 
 ## Download & Install
-Download the latest signed APK ([`OS-BOOST-v1.1.1.apk`](https://github.com/ysfzone/osboost/releases/latest)) from [GitHub Releases](https://github.com/ysfzone/osboost/releases/latest) and sideload via ADB:
+Download the latest signed APK ([`OS-BOOST-v1.2.0.apk`](https://github.com/ysfzone/osboost/releases/latest)) from [GitHub Releases](https://github.com/ysfzone/osboost/releases/latest) and sideload via ADB:
 ```bash
-adb install -r OS-BOOST-v1.1.1.apk
+adb install -r OS-BOOST-v1.2.0.apk
 ```
 
 ---

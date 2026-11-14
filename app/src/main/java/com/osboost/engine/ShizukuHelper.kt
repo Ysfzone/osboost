@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import rikka.shizuku.Shizuku
 import java.io.File
+import java.util.concurrent.TimeUnit
 
 interface RootPromptStore {
     var hasAttemptedRootPrompt: Boolean
@@ -34,33 +35,55 @@ class SharedPrefsRootPromptStore(context: Context) : RootPromptStore {
 
 object ShizukuHelper {
 
-    private val SU_PATHS = arrayOf(
+    private const val SU_TIMEOUT_MS = 2500L
+
+    internal val STANDARD_SU_PATHS = arrayOf(
         "/system/bin/su",
         "/system/xbin/su",
         "/sbin/su",
         "/su/bin/su",
-        "/vendor/bin/su"
+        "/vendor/bin/su",
+        "/system/bin/.ext/.su"
     )
 
     fun isShizukuReady(): Boolean = runCatching {
         Shizuku.pingBinder() && Shizuku.checkSelfPermission() == PackageManager.PERMISSION_GRANTED
     }.getOrDefault(false)
 
-    fun isRootBinaryPresent(): Boolean {
-        if (SU_PATHS.any { File(it).exists() }) return true
+    fun isRootBinaryPresent(
+        knownPaths: Array<String> = STANDARD_SU_PATHS,
+        pathEnv: String? = System.getenv("PATH"),
+        fileExists: (String) -> Boolean = { File(it).exists() }
+    ): Boolean {
+        if (knownPaths.any(fileExists)) return true
+
+        if (!pathEnv.isNullOrBlank()) {
+            val foundInPath = pathEnv.split(File.pathSeparatorChar)
+                .filter { it.isNotBlank() }
+                .any { dir -> fileExists(File(dir, "su").path) }
+            if (foundInPath) return true
+        }
+
         return runCatching {
             val process = Runtime.getRuntime().exec(arrayOf("which", "su"))
-            process.waitFor() == 0
+            val finished = process.waitFor(SU_TIMEOUT_MS, TimeUnit.MILLISECONDS)
+            if (!finished) {
+                process.destroyForcibly()
+                false
+            } else {
+                process.exitValue() == 0
+            }
         }.getOrDefault(false)
     }
 
     /**
-     * One-time root prompt policy:
-     * Prompts at most once when `su` exists; never prompts again if denied.
+     * One-time root prompt policy with 2.5s non-blocking timeout:
+     * - Factory pre-rooted / unmanaged `su` firmware escalates immediately.
+     * - Managed root (Magisk/SuperSU) prompts at most once; never nags if denied.
      */
     fun resolveRootAccess(
         store: RootPromptStore,
-        suExists: () -> Boolean = ::isRootBinaryPresent,
+        suExists: () -> Boolean = { isRootBinaryPresent() },
         requestSuId: () -> Boolean = ::executeSuId
     ): Boolean {
         if (!suExists()) return false
@@ -101,7 +124,7 @@ object ShizukuHelper {
                 null
             ) as Process
 
-            process.waitFor()
+            process.waitFor(SU_TIMEOUT_MS, TimeUnit.MILLISECONDS)
             packages.size
         }.getOrDefault(0)
     }
@@ -116,13 +139,26 @@ object ShizukuHelper {
                 dropCachesCmd
             }
             val process = Runtime.getRuntime().exec(arrayOf("su", "-c", fullScript))
-            if (process.waitFor() == 0) packages.size else 0
+            val finished = process.waitFor(5000L, TimeUnit.MILLISECONDS)
+            if (!finished) {
+                process.destroyForcibly()
+                0
+            } else if (process.exitValue() == 0) {
+                packages.size
+            } else {
+                0
+            }
         }.getOrDefault(0)
     }
 
     private fun executeSuId(): Boolean = runCatching {
         val process = Runtime.getRuntime().exec(arrayOf("su", "-c", "id"))
+        val finished = process.waitFor(SU_TIMEOUT_MS, TimeUnit.MILLISECONDS)
+        if (!finished) {
+            process.destroyForcibly()
+            return false
+        }
         val output = process.inputStream.bufferedReader().use { it.readText() }
-        process.waitFor() == 0 && output.contains("uid=0")
+        process.exitValue() == 0 && output.contains("uid=0")
     }.getOrDefault(false)
 }

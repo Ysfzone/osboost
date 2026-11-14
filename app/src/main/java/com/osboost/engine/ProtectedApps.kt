@@ -4,13 +4,13 @@ import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.media.AudioManager
 import android.view.inputmethod.InputMethodManager
 
 object ProtectedApps {
 
     private val CORE_SYSTEM_AND_TV_PACKAGES = setOf(
         "android",
+        "com.osboost",
         "com.android.systemui",
         "com.google.android.gms",
         "com.google.android.gsf",
@@ -27,10 +27,8 @@ object ProtectedApps {
         "com.google.android.networkstack",
         "com.android.wifi",
         "com.android.connectivity.resources",
-        "com.android.providers.media",
-        "com.google.android.providers.media.module",
         "moe.shizuku.privileged.api",
-        "com.osboost"
+        "com.topjohnwu.magisk"
     )
 
     fun getProtectedPackages(context: Context): Set<String> {
@@ -58,23 +56,11 @@ object ProtectedApps {
         return protected
     }
 
-    fun hasActiveMediaPlayback(context: Context): Boolean {
-        val am = context.getSystemService(Context.AUDIO_SERVICE) as? AudioManager ?: return false
-        return am.isMusicActive || am.activePlaybackConfigurations.isNotEmpty()
-    }
-
-    fun isProcessAudioOrForegroundProtected(
-        processInfo: ActivityManager.RunningAppProcessInfo,
-        mediaActive: Boolean
-    ): Boolean {
-        val importance = processInfo.importance
-        if (importance <= ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
-            return true
-        }
-        if (mediaActive && importance <= ActivityManager.RunningAppProcessInfo.IMPORTANCE_SERVICE) {
-            return true
-        }
-        return false
+    /**
+     * Only foreground UI processes are protected; background media/audio/IPTV apps
+     * are intentionally eligible for termination to maximize freed RAM.
+     */
+    fun isForegroundProtected(processInfo: ActivityManager.RunningAppProcessInfo): Boolean {
+        return processInfo.importance <= ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND
     }
 }
-

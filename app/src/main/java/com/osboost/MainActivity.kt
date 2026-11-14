@@ -10,6 +10,7 @@ import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
@@ -35,14 +36,15 @@ class MainActivity : Activity() {
     private val uiScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private var autoDismissJob: Job? = null
     private var flameAnimator: AnimatorSet? = null
+    private var updateGlowAnimator: AnimatorSet? = null
     private var resultsShown = false
 
     private lateinit var popupCard: LinearLayout
-    private lateinit var tvStatusBadge: TextView
     private lateinit var tvModeLabel: TextView
+    private lateinit var rocketStage: FrameLayout
     private lateinit var ivRocket: ImageView
     private lateinit var ivFlame: ImageView
-    private lateinit var tvScanningLabel: TextView
+    private lateinit var llCleaningPill: LinearLayout
     private lateinit var llResults: LinearLayout
     private lateinit var tvHeroRam: TextView
     private lateinit var tvDeltaBadge: TextView
@@ -56,16 +58,17 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
 
         bindViews()
+        applyModeLabel(SmartCleaner.peekInitialMode(applicationContext))
         startSequence()
     }
 
     private fun bindViews() {
         popupCard = findViewById(R.id.popupCard)
-        tvStatusBadge = findViewById(R.id.tvStatusBadge)
         tvModeLabel = findViewById(R.id.tvModeLabel)
+        rocketStage = findViewById(R.id.rocketStage)
         ivRocket = findViewById(R.id.ivRocket)
         ivFlame = findViewById(R.id.ivFlame)
-        tvScanningLabel = findViewById(R.id.tvScanningLabel)
+        llCleaningPill = findViewById(R.id.llCleaningPill)
         llResults = findViewById(R.id.llResults)
         tvHeroRam = findViewById(R.id.tvHeroRam)
         tvDeltaBadge = findViewById(R.id.tvDeltaBadge)
@@ -76,8 +79,17 @@ class MainActivity : Activity() {
         tvFooterVersion.text = "v${BuildConfig.VERSION_NAME}"
     }
 
+    private fun applyModeLabel(mode: EngineMode) {
+        val modeResId = when (mode) {
+            EngineMode.DEEP_ROOT -> R.string.mode_deep_root
+            EngineMode.DEEP_SHIZUKU -> R.string.mode_deep_shizuku
+            EngineMode.STANDARD_BOOST -> R.string.mode_standard
+            EngineMode.SMART_ANALYSIS -> R.string.mode_smart_analysis
+        }
+        tvModeLabel.setText(modeResId)
+    }
+
     private fun startSequence() {
-        // Initial hidden state for 0-250ms entrance
         popupCard.alpha = 0f
         popupCard.scaleX = 0.9f
         popupCard.scaleY = 0.9f
@@ -86,7 +98,7 @@ class MainActivity : Activity() {
         val updateTask = uiScope.async { UpdateChecker.checkLatestRelease() }
 
         uiScope.launch {
-            // Phase 1 (0–250ms): Card fade + scale in
+            // Phase 1 (0–250ms): Translucent card fade + scale in
             SoundEffects.playLaunchWhoosh(this@MainActivity)
             popupCard.animate()
                 .alpha(1f)
@@ -98,11 +110,11 @@ class MainActivity : Activity() {
 
             delay(250L)
 
-            // Phase 2 (250–1400ms): Rocket launch + flame + scan progress bar
+            // Phase 2 (250–1400ms): Full-height vertical rocket launch + flame + scan bar
             startRocketLaunchAnimation(durationMs = 1150L)
             delay(1150L)
 
-            // Phase 3 (1400ms+): Wait for cleaner result if still finishing, then render
+            // Phase 3 (1400ms+): Wait for cleaner result, hide Cleaning pill, render results
             val result = cleanTask.await()
             stopFlameAnimation()
             renderResults(result)
@@ -117,9 +129,14 @@ class MainActivity : Activity() {
     }
 
     private fun startRocketLaunchAnimation(durationMs: Long) {
-        val liftDp = -28f * resources.displayMetrics.density
+        // Ascend smoothly all the way up to the top inner edge of popupCard
+        val distanceToTopEdge = (rocketStage.top + ivRocket.top - popupCard.paddingTop)
+            .toFloat()
+            .takeIf { it > 0f }
+            ?: (72f * resources.displayMetrics.density)
+        val apexY = -distanceToTopEdge
 
-        ObjectAnimator.ofFloat(ivRocket, View.TRANSLATION_Y, 0f, liftDp, liftDp * 0.65f).apply {
+        ObjectAnimator.ofFloat(ivRocket, View.TRANSLATION_Y, 0f, apexY).apply {
             duration = durationMs
             interpolator = AccelerateDecelerateInterpolator()
             start()
@@ -137,7 +154,7 @@ class MainActivity : Activity() {
             repeatCount = ValueAnimator.INFINITE
             duration = 110L
         }
-        val flameFollow = ObjectAnimator.ofFloat(ivFlame, View.TRANSLATION_Y, 0f, liftDp, liftDp * 0.65f).apply {
+        val flameFollow = ObjectAnimator.ofFloat(ivFlame, View.TRANSLATION_Y, 0f, apexY).apply {
             duration = durationMs
             interpolator = AccelerateDecelerateInterpolator()
         }
@@ -156,56 +173,24 @@ class MainActivity : Activity() {
         resultsShown = true
         SoundEffects.playCompleteChime(this)
 
-        // Active Engine Mode Pill
-        val modeResId = when (result.mode) {
-            EngineMode.DEEP_ROOT -> R.string.mode_deep_root
-            EngineMode.DEEP_SHIZUKU -> R.string.mode_deep_shizuku
-            EngineMode.STANDARD_BOOST -> R.string.mode_standard
-            EngineMode.SMART_ANALYSIS -> R.string.mode_smart_analysis
-        }
-        tvModeLabel.setText(modeResId)
+        applyModeLabel(result.mode)
 
-        // Status badge
-        if (result.isOptimized) {
-            tvStatusBadge.setText(R.string.status_optimized)
-            tvStatusBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_cyan_electric))
-        } else {
-            tvStatusBadge.setText(R.string.status_analyzed)
-            tvStatusBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_silver_muted))
-        }
+        // Remove centered Cleaning... pill once results appear
+        llCleaningPill.visibility = View.GONE
 
-        // Swap scanning label for hero metrics
-        tvScanningLabel.visibility = View.GONE
         llResults.alpha = 0f
         llResults.visibility = View.VISIBLE
         llResults.animate().alpha(1f).setDuration(220L).start()
 
         tvHeroRam.text = result.stats.availableFormatted
 
-        when {
-            result.stats.deltaAvailableMB > 0 && result.processesCleaned > 0 -> {
-                tvDeltaBadge.text = getString(
-                    R.string.fmt_freed_and_cleaned,
-                    result.stats.deltaAvailableMB,
-                    result.processesCleaned
-                )
-                tvDeltaBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_cyan_electric))
-            }
-            result.stats.deltaAvailableMB > 0 -> {
-                tvDeltaBadge.text = getString(R.string.fmt_freed_mb, result.stats.deltaAvailableMB)
-                tvDeltaBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_cyan_electric))
-            }
-            result.processesCleaned > 0 -> {
-                tvDeltaBadge.text = getString(R.string.fmt_healthy_and_cleaned, result.processesCleaned)
-                tvDeltaBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_cyan_electric))
-            }
-            else -> {
-                tvDeltaBadge.setText(R.string.label_memory_healthy)
-                tvDeltaBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_silver_muted))
-            }
+        if (result.stats.deltaAvailableMB > 0) {
+            tvDeltaBadge.text = getString(R.string.fmt_freed_mb, result.stats.deltaAvailableMB)
+        } else {
+            tvDeltaBadge.setText(R.string.label_ram_optimized)
         }
+        tvDeltaBadge.setTextColor(ContextCompat.getColor(this, R.color.brand_cyan_electric))
 
-        // Update progress bar to actual used RAM percentage
         ObjectAnimator.ofInt(pbRam, "progress", pbRam.progress, result.stats.after.usedPercentage).apply {
             duration = 300L
             interpolator = DecelerateInterpolator()
@@ -225,6 +210,27 @@ class MainActivity : Activity() {
         btnUpdate.visibility = View.VISIBLE
         btnUpdate.requestFocus()
 
+        // Continuous pulsing glow/alpha animation on Update Available button
+        val pulseAlpha = ObjectAnimator.ofFloat(btnUpdate, View.ALPHA, 1f, 0.65f).apply {
+            repeatMode = ValueAnimator.REVERSE
+            repeatCount = ValueAnimator.INFINITE
+            duration = 750L
+        }
+        val pulseScaleX = ObjectAnimator.ofFloat(btnUpdate, View.SCALE_X, 1f, 1.025f).apply {
+            repeatMode = ValueAnimator.REVERSE
+            repeatCount = ValueAnimator.INFINITE
+            duration = 750L
+        }
+        val pulseScaleY = ObjectAnimator.ofFloat(btnUpdate, View.SCALE_Y, 1f, 1.025f).apply {
+            repeatMode = ValueAnimator.REVERSE
+            repeatCount = ValueAnimator.INFINITE
+            duration = 750L
+        }
+        updateGlowAnimator = AnimatorSet().apply {
+            playTogether(pulseAlpha, pulseScaleX, pulseScaleY)
+            start()
+        }
+
         btnUpdate.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 autoDismissJob?.cancel()
@@ -233,12 +239,15 @@ class MainActivity : Activity() {
 
         btnUpdate.setOnClickListener {
             autoDismissJob?.cancel()
+            updateGlowAnimator?.cancel()
+            btnUpdate.alpha = 1f
+            btnUpdate.scaleX = 1f
+            btnUpdate.scaleY = 1f
             btnUpdate.isEnabled = false
             btnUpdate.setText(R.string.update_downloading)
             UpdateChecker.downloadAndInstall(this, release)
         }
 
-        // If user doesn't interact, still auto-dismiss after 6 seconds
         scheduleAutoDismiss(delayMs = 6000L)
     }
 
@@ -277,8 +286,8 @@ class MainActivity : Activity() {
 
     override fun onDestroy() {
         flameAnimator?.cancel()
+        updateGlowAnimator?.cancel()
         uiScope.cancel()
         super.onDestroy()
     }
 }
-

@@ -37,12 +37,18 @@ object SmartCleaner {
         }
     }
 
+    fun peekInitialMode(context: Context): EngineMode {
+        val store = SharedPrefsRootPromptStore(context)
+        val cachedRoot = store.isRootGranted && ShizukuHelper.isRootBinaryPresent()
+        val shizukuReady = !cachedRoot && ShizukuHelper.isShizukuReady()
+        return selectEngineMode(cachedRoot, shizukuReady)
+    }
+
     suspend fun cleanAndAnalyze(context: Context): CleanResult = withContext(Dispatchers.IO) {
         val before = MemoryManager.readMemorySnapshot(context)
         val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val protectedPackages = ProtectedApps.getProtectedPackages(context)
-        val mediaActive = ProtectedApps.hasActiveMediaPlayback(context)
-        val targetPackages = collectEligiblePackages(context, am, protectedPackages, mediaActive)
+        val targetPackages = collectEligiblePackages(context, am, protectedPackages)
 
         val rootGranted = ShizukuHelper.resolveRootAccess(SharedPrefsRootPromptStore(context))
         val shizukuReady = !rootGranted && ShizukuHelper.isShizukuReady()
@@ -87,33 +93,34 @@ object SmartCleaner {
         )
     }
 
+    internal fun filterEligiblePackages(
+        candidates: Iterable<String>,
+        protectedPackages: Set<String>
+    ): List<String> {
+        return candidates.filterTo(ArrayList()) { it !in protectedPackages }.distinct()
+    }
+
     private fun collectEligiblePackages(
         context: Context,
         am: ActivityManager,
-        protectedPackages: Set<String>,
-        mediaActive: Boolean
+        protectedPackages: Set<String>
     ): List<String> {
-        val candidates = LinkedHashSet<String>()
+        val rawCandidates = LinkedHashSet<String>()
 
         am.runningAppProcesses?.forEach { proc ->
-            if (!ProtectedApps.isProcessAudioOrForegroundProtected(proc, mediaActive)) {
-                proc.pkgList?.forEach { pkg ->
-                    if (pkg !in protectedPackages) {
-                        candidates.add(pkg)
-                    }
-                }
+            if (!ProtectedApps.isForegroundProtected(proc)) {
+                proc.pkgList?.forEach { pkg -> rawCandidates.add(pkg) }
             }
         }
 
-        if (!mediaActive) {
-            context.packageManager.getInstalledApplications(0).forEach { appInfo ->
-                val isSystem = (appInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
-                if (!isSystem && appInfo.packageName !in protectedPackages) {
-                    candidates.add(appInfo.packageName)
-                }
+        // Include all non-system installed apps (including background media/IPTV players)
+        context.packageManager.getInstalledApplications(0).forEach { appInfo ->
+            val isSystem = (appInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
+            if (!isSystem) {
+                rawCandidates.add(appInfo.packageName)
             }
         }
 
-        return candidates.toList()
+        return filterEligiblePackages(rawCandidates, protectedPackages)
     }
 }

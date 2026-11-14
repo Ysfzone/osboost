@@ -19,9 +19,9 @@
         android:paddingStart="24dp"
         android:paddingTop="20dp"
         android:paddingEnd="24dp"
-        android:paddingBottom="22dp">
+        android:paddingBottom="20dp">
 
-        <!-- Header: Brand Wordmark (OS B∞ST) + Status Badge -->
+        <!-- Header: Brand Wordmark (OS B∞ST) + Permanent Active Strategy/Mode Pill -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,70 +55,52 @@
                 android:layout_height="1dp"
                 android:layout_weight="1" />
 
-            <TextView
-                android:id="@+id/tvStatusBadge"
+            <LinearLayout
+                android:id="@+id/llModePill"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_badge_neon"
-                android:letterSpacing="0.06"
+                android:background="@drawable/bg_mode_pill"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingStart="10dp"
                 android:paddingTop="4dp"
                 android:paddingEnd="10dp"
-                android:paddingBottom="4dp"
-                android:text="@string/status_scanning"
-                android:textColor="@color/brand_cyan_electric"
-                android:textSize="11sp"
-                android:textStyle="bold" />
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:id="@+id/ivModeDot"
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dot_glow_cyan" />
+
+                <TextView
+                    android:id="@+id/tvModeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.05"
+                    android:text="@string/mode_standard"
+                    android:textColor="@color/brand_cyan_electric"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
 
-        <!-- Explicit Active Engine Mode Pill -->
-        <LinearLayout
-            android:id="@+id/llModePill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_mode_pill"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="12dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="12dp"
-            android:paddingBottom="5dp">
-
-            <ImageView
-                android:id="@+id/ivModeDot"
-                android:layout_width="7dp"
-                android:layout_height="7dp"
-                android:contentDescription="@null"
-                android:src="@drawable/dot_glow_cyan" />
-
-            <TextView
-                android:id="@+id/tvModeLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
-                android:fontFamily="sans-serif-medium"
-                android:letterSpacing="0.06"
-                android:text="@string/status_scanning"
-                android:textColor="@color/brand_cyan_electric"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <!-- Rocket Launch Stage with Soft Cyan Radial Aura -->
+        <!-- Rocket Launch Stage -->
         <FrameLayout
             android:id="@+id/rocketStage"
             android:layout_width="match_parent"
-            android:layout_height="108dp"
-            android:layout_marginTop="8dp"
+            android:layout_height="116dp"
+            android:layout_marginTop="12dp"
             android:clipChildren="false"
             android:clipToPadding="false">
 
             <View
                 android:id="@+id/viewRocketAura"
-                android:layout_width="112dp"
-                android:layout_height="112dp"
+                android:layout_width="116dp"
+                android:layout_height="116dp"
                 android:layout_gravity="center"
                 android:background="@drawable/bg_rocket_aura" />
 
@@ -127,7 +109,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="34dp"
+                android:layout_marginTop="36dp"
                 android:alpha="0"
                 android:contentDescription="@null"
                 android:src="@drawable/ic_flame" />
@@ -141,16 +123,39 @@
                 android:src="@drawable/ic_osboost_rocket" />
         </FrameLayout>
 
-        <!-- Scanning Label -->
-        <TextView
-            android:id="@+id/tvScanningLabel"
-            android:layout_width="match_parent"
+        <!-- Centered Status Pill Below Rocket (Hidden on Results) -->
+        <LinearLayout
+            android:id="@+id/llCleaningPill"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:gravity="center"
-            android:text="@string/label_scanning_ram"
-            android:textColor="@color/brand_silver_muted"
-            android:textSize="13sp" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_mode_pill"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="18dp"
+            android:paddingTop="7dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="7dp">
+
+            <ImageView
+                android:layout_width="7dp"
+                android:layout_height="7dp"
+                android:contentDescription="@null"
+                android:src="@drawable/dot_glow_cyan" />
+
+            <TextView
+                android:id="@+id/tvCleaningStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.04"
+                android:text="@string/status_cleaning"
+                android:textColor="@color/brand_cyan_electric"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <!-- Results Hero Block (revealed at 1400ms+) -->
         <LinearLayout
@@ -185,10 +190,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/bg_badge_neon"
-                android:paddingStart="12dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="4dp"
+                android:paddingStart="14dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="14dp"
+                android:paddingBottom="5dp"
                 android:textColor="@color/brand_cyan_electric"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -216,7 +221,7 @@
             android:textSize="12sp"
             android:visibility="gone" />
 
-        <!-- Optional Silent GitHub Update Button (D-Pad Focusable) -->
+        <!-- Optional Silent GitHub Update Button (D-Pad Focusable + Pulsing Glow) -->
         <Button
             android:id="@+id/btnUpdate"
             android:layout_width="match_parent"
@@ -265,4 +270,3 @@
     </LinearLayout>
 
 </FrameLayout>
-

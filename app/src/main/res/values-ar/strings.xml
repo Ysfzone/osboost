@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">OS BOOST</string>
-    <string name="status_scanning">جارٍ الفحص</string>
-    <string name="status_optimized">تم التحسين</string>
-    <string name="status_analyzed">تم التحليل</string>
-    <string name="mode_deep_root">الوضع: تعزيز عميق • ROOT</string>
-    <string name="mode_deep_shizuku">الوضع: تعزيز عميق • SHIZUKU</string>
-    <string name="mode_standard">الوضع: تعزيز قياسي</string>
-    <string name="mode_smart_analysis">الوضع: تحليل ذكي</string>
-    <string name="label_scanning_ram">جارٍ تحسين ذاكرة النظام…</string>
+    <string name="status_cleaning">جاري التنظيف…</string>
+    <string name="mode_deep_root">تعزيز عميق • ROOT</string>
+    <string name="mode_deep_shizuku">تعزيز عميق • SHIZUKU</string>
+    <string name="mode_standard">تعزيز قياسي</string>
+    <string name="mode_smart_analysis">تحليل ذكي</string>
     <string name="label_available_ram">الذاكرة المتاحة</string>
-    <string name="label_memory_healthy">الذاكرة سليمة</string>
+    <string name="label_ram_optimized">الذاكرة محسّنة</string>
     <string name="fmt_freed_mb">+%d م.ب محرّرة</string>
-    <string name="fmt_freed_and_cleaned">+%1$d م.ب • تنظيف %2$d تطبيقات</string>
-    <string name="fmt_healthy_and_cleaned">الذاكرة سليمة • تنظيف %d تطبيقات</string>
     <string name="fmt_ram_usage">المستخدم: %1$s / الإجمالي: %2$s</string>
     <string name="fmt_update_available">تحديث متوفر: %s</string>
     <string name="update_downloading">جارٍ تنزيل التحديث…</string>

@@ -1,6 +1,5 @@
 package com.osboost
 
-import com.osboost.engine.CleanResult
 import com.osboost.engine.EngineMode
 import com.osboost.engine.MemoryManager
 import com.osboost.engine.MemorySnapshot
@@ -12,6 +11,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import java.io.File
 
 class CoreLogicTest {
 
@@ -24,12 +24,12 @@ class CoreLogicTest {
     fun `calculateStats computes delta and formats GB and MB accurately`() {
         val mb = 1024L * 1024L
         val before = MemorySnapshot(
-            totalBytes = 4096L * mb, // 4.0 GB
-            availBytes = 1024L * mb  // 1.0 GB
+            totalBytes = 4096L * mb,
+            availBytes = 1024L * mb
         )
         val after = MemorySnapshot(
-            totalBytes = 4096L * mb, // 4.0 GB
-            availBytes = 1536L * mb  // 1.5 GB
+            totalBytes = 4096L * mb,
+            availBytes = 1536L * mb
         )
 
         val stats = MemoryManager.calculateStats(before, after)
@@ -55,11 +55,32 @@ class CoreLogicTest {
 
     @Test
     fun `isNewerVersion handles semver tags accurately`() {
-        assertTrue(UpdateChecker.isNewerVersion("v1.1.0", "1.0.0"))
-        assertTrue(UpdateChecker.isNewerVersion("v1.0.1", "1.0.0"))
+        assertTrue(UpdateChecker.isNewerVersion("v1.2.0", "1.1.1"))
+        assertTrue(UpdateChecker.isNewerVersion("v1.1.1", "1.1.0"))
         assertTrue(UpdateChecker.isNewerVersion("2.0.0", "1.9.9"))
-        assertFalse(UpdateChecker.isNewerVersion("v1.1.0", "1.1.0"))
-        assertFalse(UpdateChecker.isNewerVersion("v0.9.9", "1.0.0"))
+        assertFalse(UpdateChecker.isNewerVersion("v1.2.0", "1.2.0"))
+        assertFalse(UpdateChecker.isNewerVersion("v1.1.1", "1.2.0"))
+    }
+
+    @Test
+    fun `unmanaged su path detection checks factory paths and PATH`() {
+        assertTrue(
+            ShizukuHelper.isRootBinaryPresent(
+                knownPaths = arrayOf("/system/bin/.ext/.su"),
+                pathEnv = null,
+                fileExists = { it == "/system/bin/.ext/.su" }
+            )
+        )
+
+        val customPath = "/vendor/xbin${File.pathSeparator}/custom/bin"
+        val expectedSu = File("/custom/bin", "su").path
+        assertTrue(
+            ShizukuHelper.isRootBinaryPresent(
+                knownPaths = emptyArray(),
+                pathEnv = customPath,
+                fileExists = { it == expectedSu }
+            )
+        )
     }
 
     @Test
@@ -67,7 +88,6 @@ class CoreLogicTest {
         val store = FakeRootPromptStore()
         var promptCalls = 0
 
-        // First launch: su exists, user denies
         val firstResult = ShizukuHelper.resolveRootAccess(
             store = store,
             suExists = { true },
@@ -81,7 +101,6 @@ class CoreLogicTest {
         assertFalse(store.isRootGranted)
         assertEquals(1, promptCalls)
 
-        // Second launch: must NOT prompt again
         val secondResult = ShizukuHelper.resolveRootAccess(
             store = store,
             suExists = { true },
@@ -128,20 +147,28 @@ class CoreLogicTest {
     }
 
     @Test
-    fun `CleanResult tracks closed app count accurately`() {
-        val mb = 1024L * 1024L
-        val stats = MemoryManager.calculateStats(
-            MemorySnapshot(2048L * mb, 1000L * mb),
-            MemorySnapshot(2048L * mb, 1320L * mb)
+    fun `background media and IPTV apps remain eligible while core packages are protected`() {
+        val protectedPkgs = setOf(
+            "com.osboost",
+            "com.google.android.tvlauncher",
+            "com.android.systemui",
+            "com.topjohnwu.magisk",
+            "moe.shizuku.privileged.api"
         )
-        val result = CleanResult(
-            stats = stats,
-            mode = EngineMode.DEEP_SHIZUKU,
-            processesCleaned = 6,
-            isOptimized = true
+        val candidates = listOf(
+            "com.osboost",
+            "com.google.android.tvlauncher",
+            "com.example.iptvplayer",
+            "com.spotify.tv.android",
+            "org.xbmc.kodi",
+            "com.topjohnwu.magisk"
         )
-        assertEquals(6, result.processesCleaned)
-        assertEquals(320, result.stats.deltaAvailableMB)
-        assertEquals(EngineMode.DEEP_SHIZUKU, result.mode)
+
+        val eligible = SmartCleaner.filterEligiblePackages(candidates, protectedPkgs)
+
+        assertEquals(
+            listOf("com.example.iptvplayer", "com.spotify.tv.android", "org.xbmc.kodi"),
+            eligible
+        )
     }
 }
