@@ -231,15 +231,15 @@
 
         </FrameLayout>
 
-        <!-- Neon Progress Bar -->
+        <!-- Ultra-Minimalist Aurora Hairline Progress Bar -->
         <ProgressBar
             android:id="@+id/pbRam"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="7dp"
+            android:layout_height="3dp"
             android:max="100"
             android:progress="0"
-            android:progressDrawable="@drawable/progress_neon" />
+            android:progressDrawable="@drawable/bg_progress_bar" />
 
         <!-- RAM Sub-metrics (invisible during scan to lock fixed height) -->
         <TextView

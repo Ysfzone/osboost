@@ -3,9 +3,12 @@ package com.osboost
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
+import android.animation.ArgbEvaluator
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.app.Activity
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
@@ -145,7 +148,7 @@ class MainActivity : Activity() {
 
         ObjectAnimator.ofInt(pbRam, "progress", 0, 100).apply {
             duration = durationMs
-            interpolator = AccelerateDecelerateInterpolator()
+            interpolator = DecelerateInterpolator()
             start()
         }
 
@@ -239,23 +242,37 @@ class MainActivity : Activity() {
         btnUpdate.visibility = View.VISIBLE
         btnUpdate.requestFocus()
 
-        val pulseAlpha = ObjectAnimator.ofFloat(btnUpdate, View.ALPHA, 1f, 0.65f).apply {
-            repeatMode = ValueAnimator.REVERSE
-            repeatCount = ValueAnimator.INFINITE
-            duration = 750L
+        val density = resources.displayMetrics.density
+        val strokePx = (1.5f * density).toInt().coerceAtLeast(1)
+        val glowDrawable = GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+            cornerRadius = 12f * density
+            setColor(ContextCompat.getColor(this@MainActivity, R.color.brand_bg_obsidian))
+            setStroke(strokePx, Color.parseColor("#4D00E5FF"))
         }
-        val pulseScaleX = ObjectAnimator.ofFloat(btnUpdate, View.SCALE_X, 1f, 1.025f).apply {
+        btnUpdate.background = glowDrawable
+
+        val borderGlow = ValueAnimator.ofObject(
+            ArgbEvaluator(),
+            Color.parseColor("#4D00E5FF"),
+            Color.parseColor("#CC00E5FF")
+        ).apply {
             repeatMode = ValueAnimator.REVERSE
             repeatCount = ValueAnimator.INFINITE
-            duration = 750L
+            duration = 900L
+            interpolator = AccelerateDecelerateInterpolator()
+            addUpdateListener { anim ->
+                glowDrawable.setStroke(strokePx, anim.animatedValue as Int)
+            }
         }
-        val pulseScaleY = ObjectAnimator.ofFloat(btnUpdate, View.SCALE_Y, 1f, 1.025f).apply {
+        val breathAlpha = ObjectAnimator.ofFloat(btnUpdate, View.ALPHA, 0.78f, 1f).apply {
             repeatMode = ValueAnimator.REVERSE
             repeatCount = ValueAnimator.INFINITE
-            duration = 750L
+            duration = 900L
+            interpolator = AccelerateDecelerateInterpolator()
         }
         updateGlowAnimator = AnimatorSet().apply {
-            playTogether(pulseAlpha, pulseScaleX, pulseScaleY)
+            playTogether(borderGlow, breathAlpha)
             start()
         }
 
@@ -269,8 +286,6 @@ class MainActivity : Activity() {
             autoDismissJob?.cancel()
             updateGlowAnimator?.cancel()
             btnUpdate.alpha = 1f
-            btnUpdate.scaleX = 1f
-            btnUpdate.scaleY = 1f
             btnUpdate.isEnabled = false
             btnUpdate.setText(R.string.update_downloading)
             UpdateChecker.downloadAndInstall(this, release)
@@ -282,13 +297,13 @@ class MainActivity : Activity() {
     private fun scheduleAutoDismiss(delayMs: Long = 2000L) {
         autoDismissJob?.cancel()
         autoDismissJob = uiScope.launch {
-            val fadeLeadMs = 800L
+            val fadeLeadMs = 1100L
             if (delayMs > fadeLeadMs) {
                 delay(delayMs - fadeLeadMs)
                 flDoneBadge.animate()
                     .alpha(0f)
-                    .setDuration(250L)
-                    .setInterpolator(DecelerateInterpolator())
+                    .setDuration(200L)
+                    .setInterpolator(AccelerateInterpolator())
                     .start()
                 delay(fadeLeadMs)
             } else {

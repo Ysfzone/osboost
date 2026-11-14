@@ -77,3 +77,4 @@
 - [x] Release `v1.2.0`: Corner-glow borderless divider-free banner, top-right strategy pill, full-height rocket launch, pulsing update glow, background media cleanup, and unmanaged `su` root support
 - [x] Release `v1.2.1`: Fixed-height popup card, rocket fly-away animation, and DONE completion badge
 - [x] Release `v1.2.2`: Optical vertical spacing, minimalist checkmark symbol, and choreographed fade-out
+- [x] Release `v1.2.3`: Ultra-minimalist Aurora Hairline, rapid Done fade-out, and ambient update glow
